@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
 /* ============================================
    AMY'S HAUS — Global Styles
    ============================================ */
@@ -5,84 +6,84 @@
 /* --- Font Declarations --- */
 @font-face {
   font-family: 'Saigon';
-  src: url('../public/fonts/Saigon-Thin.otf') format('opentype');
+  src: url('/public/fonts/Saigon-Thin.otf') format('opentype');
   font-weight: 100;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Saigon';
-  src: url('../public/fonts/Saigon-ThinItalic.otf') format('opentype');
+  src: url('/public/fonts/Saigon-ThinItalic.otf') format('opentype');
   font-weight: 100;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Saigon';
-  src: url('../public/fonts/Saigon-ExtraLight.otf') format('opentype');
+  src: url('/public/fonts/Saigon-ExtraLight.otf') format('opentype');
   font-weight: 200;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Saigon';
-  src: url('../public/fonts/Saigon-ExtraLightItalic.otf') format('opentype');
+  src: url('/public/fonts/Saigon-ExtraLightItalic.otf') format('opentype');
   font-weight: 200;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Saigon';
-  src: url('../public/fonts/Saigon-Light.otf') format('opentype');
+  src: url('/public/fonts/Saigon-Light.otf') format('opentype');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Saigon';
-  src: url('../public/fonts/Saigon-LightItalic.otf') format('opentype');
+  src: url('/public/fonts/Saigon-LightItalic.otf') format('opentype');
   font-weight: 300;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Saigon';
-  src: url('../public/fonts/Saigon-Regular.otf') format('opentype');
+  src: url('/public/fonts/Saigon-Regular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Saigon';
-  src: url('../public/fonts/Saigon-Italic.otf') format('opentype');
+  src: url('/public/fonts/Saigon-Italic.otf') format('opentype');
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Saigon';
-  src: url('../public/fonts/Saigon-SemiBold.otf') format('opentype');
+  src: url('/public/fonts/Saigon-SemiBold.otf') format('opentype');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Saigon';
-  src: url('../public/fonts/Saigon-SemiBoldItalic.otf') format('opentype');
+  src: url('/public/fonts/Saigon-SemiBoldItalic.otf') format('opentype');
   font-weight: 600;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Saigon';
-  src: url('../public/fonts/Saigon-Bold.otf') format('opentype');
+  src: url('/public/fonts/Saigon-Bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Saigon';
-  src: url('../public/fonts/Saigon-BoldItalic.otf') format('opentype');
+  src: url('/public/fonts/Saigon-BoldItalic.otf') format('opentype');
   font-weight: 700;
   font-style: italic;
   font-display: swap;
@@ -619,6 +620,3 @@ a {
     text-align: center;
   }
 }
-
-/* Google Fonts import for Work Sans */
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');

@@ -3,27 +3,749 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Amy's Haus — Hospitality Experience Consulting</title>
-  <meta name="description" content="Boutique hospitality experience consulting for independent hotels, resorts and restaurants. We find the gap between the experience you intend and the one guests actually have.">
-  <link rel="icon" href="https://res.cloudinary.com/dxhyox3vo/image/upload/v1775346313/AmysHausLogo_argabt.svg">
-  <link rel="stylesheet" href="/css/global.css">
-  <link rel="stylesheet" href="/css/home.css">
+  <title>Amy's Haus — Creating spaces worth remembering.</title>
+  <meta name="description" content="Boutique hospitality experience consulting for independent hotels, resorts and restaurants across the US.">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+
+    @font-face {
+      font-family: 'Saigon';
+      src: url('https://raw.githubusercontent.com/AmysHaus/amys-haus-website/main/public/fonts/Saigon-Light.otf') format('opentype');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Saigon';
+      src: url('https://raw.githubusercontent.com/AmysHaus/amys-haus-website/main/public/fonts/Saigon-LightItalic.otf') format('opentype');
+      font-weight: 300;
+      font-style: italic;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Saigon';
+      src: url('https://raw.githubusercontent.com/AmysHaus/amys-haus-website/main/public/fonts/Saigon-Regular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Saigon';
+      src: url('https://raw.githubusercontent.com/AmysHaus/amys-haus-website/main/public/fonts/Saigon-Italic.otf') format('opentype');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Saigon';
+      src: url('https://raw.githubusercontent.com/AmysHaus/amys-haus-website/main/public/fonts/Saigon-SemiBold.otf') format('opentype');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* =====================
+       TOKENS
+    ===================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --chocolate:      #563433;
+      --chocolate-deep: #3d2524;
+      --cream:          #F5F0EA;
+      --cream-mid:      #E8DDD0;
+      --gold:           #C4956A;
+      --white:          #FFFFFF;
+      --ink:            #1A1A1A;
+      --ink-muted:      #5a4a48;
+      --serif:          'Saigon', Georgia, serif;
+      --sans:           'Work Sans', system-ui, sans-serif;
+      --gutter:         clamp(1.5rem, 5vw, 5rem);
+      --radius:         2rem;
+      --radius-pill:    100px;
+      --ease:           cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--sans); background: var(--cream); color: var(--ink); overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* =====================
+       LAYOUT
+    ===================== */
+    .container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    .section { padding: clamp(4rem, 8vw, 9rem) 0; }
+
+    /* =====================
+       TYPOGRAPHY
+    ===================== */
+    .t-display {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(2.8rem, 6vw, 6rem);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+    }
+    .t-display em { font-style: italic; }
+
+    .t-heading {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      line-height: 1.15;
+    }
+
+    .t-subheading {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      line-height: 1.4;
+    }
+
+    .t-label {
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .t-body {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+      line-height: 1.8;
+    }
+
+    /* =====================
+       BUTTONS
+    ===================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.9rem 2rem;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      transition: all 0.35s var(--ease);
+      white-space: nowrap;
+    }
+    .btn-dark { background: var(--chocolate); color: var(--white); }
+    .btn-dark:hover { background: var(--chocolate-deep); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(86,52,51,0.25); }
+    .btn-light { background: var(--white); color: var(--chocolate); }
+    .btn-light:hover { background: var(--cream); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.45); }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: var(--white); }
+    .btn-outline-dark { background: transparent; color: var(--chocolate); border: 1.5px solid var(--chocolate); }
+    .btn-outline-dark:hover { background: var(--chocolate); color: var(--white); }
+
+    .arrow-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: gap 0.3s var(--ease);
+    }
+    .arrow-link:hover { gap: 1rem; }
+
+    /* =====================
+       REVEAL ANIMATIONS
+    ===================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* =====================
+       IMAGE PLACEHOLDER
+    ===================== */
+    .img-placeholder {
+      background: var(--cream-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-muted);
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+
+    /* =====================
+       NAV
+    ===================== */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.75rem var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s var(--ease), padding 0.4s var(--ease);
+    }
+    .nav.scrolled {
+      background: rgba(86,52,51,0.97);
+      backdrop-filter: blur(12px);
+      padding: 1.1rem var(--gutter);
+    }
+
+    .nav__logo {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--white);
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav__links a {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      transition: color 0.3s;
+    }
+    .nav__links a:hover { color: var(--white); }
+
+    .nav__cta {
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.65rem 1.5rem;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid rgba(255,255,255,0.4);
+      color: var(--white);
+      transition: all 0.35s var(--ease);
+    }
+    .nav__cta:hover { background: var(--white); color: var(--chocolate); border-color: var(--white); }
+
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .nav__hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--white);
+    }
+
+    /* =====================
+       HERO
+    ===================== */
+    .hero {
+      position: relative;
+      height: 100svh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: clamp(2rem, 4vw, 3.5rem);
+      overflow: hidden;
+      background: var(--chocolate);
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+    }
+    .hero__bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(170deg, rgba(86,52,51,0.1) 0%, rgba(30,15,15,0.5) 100%);
+    }
+
+    .hero__bottom {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+
+    .hero__monogram {
+      width: clamp(140px, 18vw, 280px);
+      margin-bottom: 1.25rem;
+    }
+    .hero__monogram img {
+      width: 100%;
+      height: auto;
+    }
+
+    .hero__rule {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.3);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero__foot {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .hero__wordmark {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1rem, 1.8vw, 1.4rem);
+      color: var(--white);
+    }
+
+    .hero__tagline {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(0.85rem, 1.2vw, 1.05rem);
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* =====================
+       TAGLINE BAND
+    ===================== */
+    .tagline-band {
+      background: var(--cream);
+      padding: clamp(4rem, 7vw, 8rem) 0;
+    }
+
+    .tagline-band__inner p:first-child {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(2.8rem, 6vw, 6rem);
+      line-height: 1.05;
+      color: var(--chocolate);
+      opacity: 0.4;
+    }
+
+    .tagline-band__inner p:last-child {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(2.8rem, 6vw, 6rem);
+      line-height: 1.05;
+      color: var(--chocolate);
+    }
+
+    /* =====================
+       PROBLEM
+    ===================== */
+    .problem { background: var(--chocolate); }
+
+    .problem__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 8rem);
+      align-items: start;
+    }
+
+    .problem__heading { color: var(--white); }
+
+    .problem__body { color: rgba(255,255,255,0.6); }
+    .problem__body p + p { margin-top: 1.25rem; }
+
+    /* =====================
+       SOLUTION
+    ===================== */
+    .solution { background: var(--cream); }
+
+    .solution__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 8rem);
+      align-items: center;
+    }
+
+    .solution__image {
+      aspect-ratio: 3/4;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .solution__image-caption {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.85rem;
+      opacity: 0.45;
+    }
+
+    .solution__label { color: var(--chocolate); opacity: 0.5; margin-bottom: 0.85rem; }
+    .solution__heading { color: var(--chocolate); margin-bottom: 1.5rem; }
+    .solution__body { color: var(--ink-muted); margin-bottom: 2rem; }
+    .solution__body p + p { margin-top: 1.25rem; }
+    .solution__body em { font-family: var(--serif); font-style: italic; color: var(--chocolate); }
+
+    /* =====================
+       FOR YOU IF
+    ===================== */
+    .for-you { background: var(--cream-mid); }
+
+    .for-you__inner { max-width: 860px; margin: 0 auto; }
+
+    .for-you__intro {
+      color: var(--chocolate);
+      opacity: 0.55;
+      margin-bottom: 0.85rem;
+    }
+
+    .for-you__rule {
+      width: 100%;
+      height: 1px;
+      background: var(--chocolate);
+      opacity: 0.15;
+    }
+
+    .for-you__item {
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+      padding: 2rem 0;
+    }
+
+    .for-you__num {
+      font-family: var(--serif);
+      font-weight: 200;
+      font-size: 0.8rem;
+      color: var(--chocolate);
+      opacity: 0.35;
+      flex-shrink: 0;
+      min-width: 2rem;
+      letter-spacing: 0.08em;
+    }
+
+    .for-you__text { color: var(--chocolate); }
+
+    /* =====================
+       HAUS WALK
+    ===================== */
+    .haus-walk { background: var(--chocolate); }
+
+    .haus-walk__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 8rem);
+      align-items: center;
+    }
+
+    .haus-walk__label { opacity: 0.45; margin-bottom: 1.25rem; }
+    .haus-walk__heading { color: var(--white); margin-bottom: 1.5rem; }
+    .haus-walk__heading em { font-style: italic; }
+    .haus-walk__body { color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; }
+    .haus-walk__body p + p { margin-top: 1.1rem; }
+    .haus-walk__price { opacity: 0.45; margin-bottom: 2rem; }
+
+    .haus-walk__image {
+      aspect-ratio: 4/5;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .haus-walk__tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1.25rem;
+    }
+
+    .haus-walk__tag {
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-pill);
+    }
+
+    /* =====================
+       AMY
+    ===================== */
+    .amy { background: var(--cream); }
+
+    .amy__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 8rem);
+      align-items: start;
+    }
+
+    .amy__image {
+      aspect-ratio: 3/4;
+      border-radius: var(--radius) var(--radius) 0 0;
+      overflow: hidden;
+    }
+
+    .amy__quote {
+      background: var(--chocolate);
+      color: var(--white);
+      padding: 1.75rem 2rem;
+      border-radius: 0 0 var(--radius) var(--radius);
+    }
+
+    .amy__quote p {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1rem, 1.4vw, 1.2rem);
+      line-height: 1.5;
+      opacity: 0.85;
+    }
+
+    .amy__label { color: var(--chocolate); opacity: 0.45; margin-bottom: 0.75rem; }
+    .amy__heading { color: var(--chocolate); margin-bottom: 1.5rem; }
+    .amy__body { color: var(--ink-muted); margin-bottom: 2rem; }
+    .amy__body p + p { margin-top: 1.25rem; }
+
+    /* =====================
+       SERVICES
+    ===================== */
+    .services { background: var(--cream-mid); }
+
+    .services__header { margin-bottom: clamp(2.5rem, 4vw, 4rem); }
+    .services__header-label { color: var(--chocolate); opacity: 0.5; margin-bottom: 0.75rem; }
+    .services__header h2 { color: var(--chocolate); }
+
+    .services__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-bottom: clamp(2.5rem, 4vw, 4rem);
+    }
+
+    .service-card {
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--chocolate);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s var(--ease);
+    }
+
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(86,52,51,0.1); }
+    .service-card:hover::after { transform: scaleX(1); }
+
+    .service-card__num {
+      font-family: var(--serif);
+      font-weight: 200;
+      font-size: 1rem;
+      color: var(--chocolate);
+      opacity: 0.25;
+      letter-spacing: 0.08em;
+    }
+
+    .service-card__title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1.4rem;
+      color: var(--chocolate);
+      line-height: 1.2;
+    }
+
+    .service-card__type { color: var(--chocolate); opacity: 0.4; }
+
+    .service-card__desc {
+      color: var(--ink-muted);
+      font-size: 0.9rem;
+      line-height: 1.75;
+      flex: 1;
+    }
+
+    .service-card__price { color: var(--chocolate); opacity: 0.55; }
+
+    .service-card__arrow {
+      color: var(--chocolate);
+      opacity: 0.25;
+      align-self: flex-end;
+      transition: opacity 0.3s, transform 0.3s var(--ease);
+    }
+
+    .service-card:hover .service-card__arrow { opacity: 1; transform: translateX(4px); }
+
+    .services__cta { display: flex; justify-content: center; }
+
+    /* =====================
+       CLOSING CTA
+    ===================== */
+    .closing { background: var(--chocolate); }
+
+    .closing__inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .closing__label { opacity: 0.35; margin-bottom: 1.5rem; }
+    .closing__headline { color: var(--white); margin-bottom: 1.5rem; }
+    .closing__headline em { opacity: 0.7; }
+    .closing__sub { color: rgba(255,255,255,0.55); margin-bottom: 2.5rem; }
+    .closing__note { opacity: 0.3; margin-top: 1.75rem; }
+
+    /* =====================
+       FOOTER
+    ===================== */
+    .footer {
+      background: var(--chocolate-deep);
+      color: var(--white);
+      padding: clamp(4rem, 7vw, 7rem) 0 clamp(2rem, 3vw, 3rem);
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: clamp(2rem, 5vw, 6rem);
+      padding-bottom: 3rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer__brand {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer__desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    .footer__heading {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer__links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer__links a {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      transition: color 0.3s;
+    }
+    .footer__links a:hover { color: var(--white); }
+
+    .footer__contact p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer__bottom {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.04em;
+    }
+
+    /* =====================
+       RESPONSIVE
+    ===================== */
+    @media (max-width: 900px) {
+      .problem__grid,
+      .solution__grid,
+      .haus-walk__grid,
+      .amy__grid { grid-template-columns: 1fr; }
+
+      .services__grid { grid-template-columns: 1fr; max-width: 480px; }
+
+      .footer__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer__bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+
+    @media (max-width: 768px) {
+      .nav__links, .nav__cta { display: none; }
+      .nav__hamburger { display: flex; }
+      .hero__tagline { display: none; }
+      .closing__inner { text-align: left; }
+    }
+  </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav class="nav nav--light" id="nav">
-    <a href="/" class="nav__logo" aria-label="Amy's Haus">
-      <span class="nav__logo-name">Amy's Haus</span>
-    </a>
+  <nav class="nav" id="nav">
+    <a href="/" class="nav__logo">Amy's Haus</a>
     <ul class="nav__links">
-      <li><a href="/pages/about.html">About</a></li>
-      <li><a href="/pages/work-with-me.html">Work With Me</a></li>
-      <li><a href="/pages/journal.html">The Journal</a></li>
-      <li><a href="/pages/contact.html">Contact</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/work-with-me.html">Work With Me</a></li>
+      <li><a href="/journal.html">The Journal</a></li>
+      <li><a href="/contact.html">Contact</a></li>
     </ul>
-    <a href="/pages/contact.html#book" class="nav__cta">Book a Discovery Call</a>
-    <button class="nav__hamburger" id="hamburger" aria-label="Open menu">
+    <a href="/contact.html#book" class="nav__cta">Book a Discovery Call</a>
+    <button class="nav__hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </nav>
@@ -31,14 +753,14 @@
   <main>
 
     <!-- HERO -->
-    <section class="hero" id="hero">
+    <section class="hero">
       <div class="hero__bg">
         <img src="https://res.cloudinary.com/dxhyox3vo/image/upload/q_auto/f_auto/v1775346286/amyshauslandingbg_tefbwi.png" alt="" loading="eager">
         <div class="hero__overlay"></div>
       </div>
       <div class="hero__bottom container">
         <div class="hero__monogram">
-          <img src="https://res.cloudinary.com/dxhyox3vo/image/upload/q_auto/f_auto/v1775346313/AmysHausLogo_argabt.svg" alt="AH monogram">
+          <img src="https://res.cloudinary.com/dxhyox3vo/image/upload/q_auto/f_auto/v1775346313/AmysHausLogo_argabt.svg" alt="Amy's Haus">
         </div>
         <div class="hero__rule"></div>
         <div class="hero__foot">
@@ -48,57 +770,55 @@
       </div>
     </section>
 
-    <!-- TAGLINE -->
-    <section class="tagline-band">
+    <!-- TAGLINE BAND -->
+    <section class="tagline-band section">
       <div class="container">
         <div class="tagline-band__inner reveal">
-          <p class="t-display-italic">We don't fill space.</p>
-          <p class="t-display tagline-band__strong">We create it.</p>
+          <p>We don't fill space.</p>
+          <p>We create it.</p>
         </div>
       </div>
     </section>
 
     <!-- PROBLEM -->
-    <section class="section problem bg-chocolate" id="problem">
+    <section class="problem section">
       <div class="container">
         <div class="problem__grid">
-          <div class="problem__left reveal">
-            <p class="t-label" style="opacity:0.5;margin-bottom:1.5rem;">The Gap</p>
+          <div class="reveal">
+            <p class="t-label" style="opacity:0.45;color:var(--white);margin-bottom:1.25rem;">The Gap</p>
             <h2 class="t-heading problem__heading">Most boutique hotels and restaurants are closer to that feeling than they think.</h2>
           </div>
-          <div class="problem__right reveal reveal-delay-2">
-            <div class="problem__body t-body-lg">
-              <p>They have soul. They have intention. But something isn't quite landing — and they can't see it because they're too close to it every day.</p>
-              <p>It might be the way the entrance smells. The pause before a guest gets acknowledged. The bathroom that doesn't match the rest of the experience. The music that's slightly off. The staff who are trying but don't quite know how to make someone feel seen.</p>
-              <p>These are the things guests feel — and talk about — even when they can't articulate exactly why.</p>
-            </div>
+          <div class="reveal reveal-delay-2 problem__body t-body">
+            <p>They have soul. They have intention. But something isn't quite landing — and they can't see it because they're too close to it every day.</p>
+            <p>It might be the way the entrance smells. The pause before a guest gets acknowledged. The bathroom that doesn't match the rest of the experience. The music that's slightly off. The staff who are trying but don't quite know how to make someone feel seen.</p>
+            <p>These are the things guests feel — and talk about — even when they can't articulate exactly why.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- SOLUTION -->
-    <section class="section solution bg-cream" id="solution">
+    <section class="solution section">
       <div class="container">
         <div class="solution__grid">
-          <div class="solution__image-wrap reveal">
-            <div class="solution__image rounded-card">
-              <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=900&q=80" alt="Considered hospitality space" class="img-cover" loading="lazy">
+          <div class="reveal">
+            <div class="solution__image img-placeholder" style="aspect-ratio:3/4;border-radius:var(--radius);">
+              Future imagery
             </div>
             <div class="solution__image-caption">
               <span class="t-label">The Haus Walk</span>
-              <span class="t-label" style="opacity:0.4;">On-site assessment</span>
+              <span class="t-label">On-site assessment</span>
             </div>
           </div>
-          <div class="solution__content reveal reveal-delay-2">
+          <div class="reveal reveal-delay-2">
             <p class="t-label solution__label">What We Do</p>
             <h2 class="t-heading solution__heading">Amy's Haus looks at all of it.</h2>
-            <div class="t-body-lg solution__body">
+            <div class="t-body solution__body">
               <p>We're a boutique hospitality experience consultancy working with independent hotels, resorts, and restaurants across the US. We specialise in destination and coastal markets — and we travel to you.</p>
               <p>We don't just look at your space. We feel it. We watch your guests. We notice the things your team has stopped seeing. And then we show you the gap between the experience you intend to create and the one people are actually having.</p>
-              <p class="solution__kicker"><em>Not as a verdict. As a roadmap.</em></p>
+              <p><em>Not as a verdict. As a roadmap.</em></p>
             </div>
-            <a href="/pages/about.html" class="btn-arrow" style="color:var(--chocolate);margin-top:2rem;display:inline-flex;">
+            <a href="/about.html" class="arrow-link" style="color:var(--chocolate);">
               About Amy
               <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 7H17M11 1L17 7L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
@@ -108,65 +828,56 @@
     </section>
 
     <!-- FOR YOU IF -->
-    <section class="section for-you bg-cream-mid" id="for-you">
+    <section class="for-you section">
       <div class="container">
         <div class="for-you__inner">
-          <div class="for-you__heading-wrap reveal">
-            <p class="t-label" style="color:var(--chocolate);opacity:0.6;margin-bottom:1rem;">This is for you if</p>
-            <div class="rule" style="color:var(--chocolate);"></div>
+          <p class="t-label for-you__intro reveal">This is for you if</p>
+          <div class="for-you__rule reveal"></div>
+          <div class="for-you__item reveal reveal-delay-1">
+            <span class="for-you__num">01</span>
+            <p class="t-subheading for-you__text">You have a property with real soul, but something isn't clicking</p>
           </div>
-          <div class="for-you__items">
-            <div class="for-you__item reveal reveal-delay-1">
-              <span class="for-you__num">01</span>
-              <p class="for-you__text t-subheading">You have a property with real soul, but something isn't clicking</p>
-            </div>
-            <div class="rule" style="color:var(--chocolate);"></div>
-            <div class="for-you__item reveal reveal-delay-2">
-              <span class="for-you__num">02</span>
-              <p class="for-you__text t-subheading">Your guests enjoy the experience, but they're not raving about it</p>
-            </div>
-            <div class="rule" style="color:var(--chocolate);"></div>
-            <div class="for-you__item reveal reveal-delay-3">
-              <span class="for-you__num">03</span>
-              <p class="for-you__text t-subheading">You're losing ground to newer properties and can't put your finger on why</p>
-            </div>
-            <div class="rule" style="color:var(--chocolate);"></div>
-            <div class="for-you__item reveal reveal-delay-4">
-              <span class="for-you__num">04</span>
-              <p class="for-you__text t-subheading">You want to compete on experience — not price, not trend</p>
-            </div>
-            <div class="rule" style="color:var(--chocolate);"></div>
+          <div class="for-you__rule reveal"></div>
+          <div class="for-you__item reveal reveal-delay-2">
+            <span class="for-you__num">02</span>
+            <p class="t-subheading for-you__text">Your guests enjoy the experience, but they're not raving about it</p>
           </div>
+          <div class="for-you__rule reveal"></div>
+          <div class="for-you__item reveal reveal-delay-3">
+            <span class="for-you__num">03</span>
+            <p class="t-subheading for-you__text">You're losing ground to newer properties and can't put your finger on why</p>
+          </div>
+          <div class="for-you__rule reveal"></div>
+          <div class="for-you__item reveal reveal-delay-4">
+            <span class="for-you__num">04</span>
+            <p class="t-subheading for-you__text">You want to compete on experience — not price, not trend</p>
+          </div>
+          <div class="for-you__rule reveal"></div>
         </div>
       </div>
     </section>
 
     <!-- HAUS WALK -->
-    <section class="section haus-walk bg-chocolate" id="haus-walk">
+    <section class="haus-walk section">
       <div class="container">
         <div class="haus-walk__grid">
-          <div class="haus-walk__content reveal">
-            <p class="t-label" style="opacity:0.5;margin-bottom:1.5rem;">Where it starts</p>
+          <div class="reveal">
+            <p class="t-label haus-walk__label" style="color:var(--white);">Where it starts</p>
             <h2 class="t-heading haus-walk__heading">It starts with<br><em>The Haus Walk.</em></h2>
-            <div class="t-body-lg haus-walk__body">
+            <div class="t-body haus-walk__body">
               <p>Our signature on-site assessment. We come to you, experience your property as a guest, and then go deeper — across the sensory experience, the way your people show up, the physical details, and how well your space actually functions.</p>
               <p>You walk away with a clear written report and a prioritised roadmap. Not a list of problems — a path forward.</p>
             </div>
-            <p class="t-label" style="opacity:0.5;margin:1.5rem 0;">From $1,500 + travel</p>
-            <a href="/pages/contact.html#book" class="btn btn--primary">Book a Discovery Call</a>
+            <p class="t-label haus-walk__price" style="color:var(--white);">From $1,500 + travel</p>
+            <a href="/contact.html#book" class="btn btn-light">Book a Discovery Call</a>
           </div>
-          <div class="haus-walk__image-wrap reveal reveal-delay-2">
-            <div class="haus-walk__image rounded-card">
-              <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=900&q=80" alt="Boutique hotel" class="img-cover" loading="lazy">
-            </div>
-            <div class="haus-walk__pill">
-              <span class="t-label" style="font-size:0.6rem;opacity:0.6;">Four layers assessed</span>
-              <div class="haus-walk__layers">
-                <span>Sensory</span>
-                <span>Human</span>
-                <span>Physical</span>
-                <span>Functional</span>
-              </div>
+          <div class="reveal reveal-delay-2">
+            <div class="haus-walk__image img-placeholder">Future imagery</div>
+            <div class="haus-walk__tags">
+              <span class="haus-walk__tag">Sensory</span>
+              <span class="haus-walk__tag">Human</span>
+              <span class="haus-walk__tag">Physical</span>
+              <span class="haus-walk__tag">Functional</span>
             </div>
           </div>
         </div>
@@ -174,85 +885,85 @@
     </section>
 
     <!-- AMY -->
-    <section class="section amy bg-cream" id="amy">
+    <section class="amy section">
       <div class="container">
         <div class="amy__grid">
-          <div class="amy__image-wrap reveal">
-            <div class="amy__image rounded-card corner-tl">
-              <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=800&q=80" alt="Amy" class="img-cover" loading="lazy" id="amy-photo">
+          <div class="reveal">
+            <div class="amy__image">
+              <img src="https://res.cloudinary.com/dxhyox3vo/image/upload/q_auto/f_auto/v1775326061/AmyKrugerDesigner_rgi9bb.webp" alt="Amy" style="width:100%;height:100%;object-fit:cover;">
             </div>
-            <div class="amy__quote reveal reveal-delay-2">
-              <p class="t-subheading amy__quote-text">"The curation of space directly correlates to how engaged we are within it."</p>
+            <div class="amy__quote">
+              <p>"The curation of space directly correlates to how engaged we are within it."</p>
             </div>
           </div>
-          <div class="amy__content reveal reveal-delay-1">
+          <div class="reveal reveal-delay-2">
             <p class="t-label amy__label">Hi, I'm Amy.</p>
             <h2 class="t-heading amy__heading">I've always been able to feel a space.</h2>
-            <div class="t-body-lg amy__body">
+            <div class="t-body amy__body">
               <p>I've spent over a decade obsessing about what makes spaces work — not just how they look, but how they feel. How they make people move, linger, return. What makes a guest feel seen without knowing exactly why.</p>
               <p>I've produced major events across Australia, worked with luxury retail brands, and consulted for restaurants and boutique resorts. I've sat in the back of rooms watching how people respond to spaces, reading the room in ways most people don't notice.</p>
               <p>That's what I bring to Amy's Haus. Not just a designer's eye — a hospitality professional's instinct.</p>
             </div>
-            <a href="/pages/about.html" class="btn btn--dark">More About Amy</a>
+            <a href="/about.html" class="btn btn-dark">More About Amy</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SERVICES PREVIEW -->
-    <section class="section services-preview bg-cream-mid" id="services">
+    <!-- SERVICES -->
+    <section class="services section">
       <div class="container">
-        <div class="services-preview__header reveal">
-          <p class="t-label" style="color:var(--chocolate);opacity:0.6;margin-bottom:0.75rem;">How we work together</p>
-          <h2 class="t-heading" style="color:var(--chocolate);">Every great experience<br>starts with seeing clearly.</h2>
+        <div class="services__header reveal">
+          <p class="t-label services__header-label">How we work together</p>
+          <h2 class="t-heading">Every great experience<br>starts with seeing clearly.</h2>
         </div>
-        <div class="services-preview__grid">
-          <a href="/pages/work-with-me.html#haus-walk" class="service-card reveal reveal-delay-1">
+        <div class="services__grid">
+          <a href="/work-with-me.html#haus-walk" class="service-card reveal reveal-delay-1">
             <div class="service-card__num">01</div>
             <h3 class="service-card__title">The Haus Walk</h3>
-            <p class="service-card__type t-label">Hospitality Experience Audit</p>
-            <p class="service-card__desc t-body">Our signature on-site assessment. We come to you, experience your property as a guest, and deliver a clear written report and prioritised roadmap.</p>
-            <p class="service-card__price t-label">From $1,500 + travel</p>
+            <p class="t-label service-card__type">Hospitality Experience Audit</p>
+            <p class="service-card__desc">Our signature on-site assessment. We come to you, experience your property as a guest, and deliver a clear written report and prioritised roadmap.</p>
+            <p class="t-label service-card__price">From $1,500 + travel</p>
             <div class="service-card__arrow">
               <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 7H17M11 1L17 7L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
           </a>
-          <a href="/pages/work-with-me.html#full-refresh" class="service-card reveal reveal-delay-2">
+          <a href="/work-with-me.html#full-refresh" class="service-card reveal reveal-delay-2">
             <div class="service-card__num">02</div>
             <h3 class="service-card__title">The Full Haus Refresh</h3>
-            <p class="service-card__type t-label">Creative Direction & Implementation</p>
-            <p class="service-card__desc t-body">The main engagement. Built from your Haus Walk findings. We act as creative director to deliver real and lasting change across your space, brand, and team.</p>
-            <p class="service-card__price t-label">From $5,000</p>
+            <p class="t-label service-card__type">Creative Direction & Implementation</p>
+            <p class="service-card__desc">The main engagement. Built from your Haus Walk findings. We act as creative director to deliver lasting change across your space, brand, and team.</p>
+            <p class="t-label service-card__price">From $5,000</p>
             <div class="service-card__arrow">
               <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 7H17M11 1L17 7L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
           </a>
-          <a href="/pages/work-with-me.html#partnership" class="service-card reveal reveal-delay-3">
+          <a href="/work-with-me.html#partnership" class="service-card reveal reveal-delay-3">
             <div class="service-card__num">03</div>
             <h3 class="service-card__title">The Ongoing Haus Partnership</h3>
-            <p class="service-card__type t-label">Retainer</p>
-            <p class="service-card__desc t-body">For clients who want to stay sharp. Once a Refresh is complete, we remain a trusted ongoing partner — helping your property maintain its standard and keep evolving.</p>
-            <p class="service-card__price t-label">Bespoke structure</p>
+            <p class="t-label service-card__type">Retainer</p>
+            <p class="service-card__desc">For clients who want to stay sharp. Once a Refresh is complete, we remain a trusted ongoing partner — maintaining the standard and keeping the experience evolving.</p>
+            <p class="t-label service-card__price">Bespoke structure</p>
             <div class="service-card__arrow">
               <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 7H17M11 1L17 7L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
           </a>
         </div>
-        <div class="services-preview__cta reveal">
-          <a href="/pages/work-with-me.html" class="btn btn--dark">See All Services</a>
+        <div class="services__cta reveal">
+          <a href="/work-with-me.html" class="btn btn-dark">See All Services</a>
         </div>
       </div>
     </section>
 
     <!-- CLOSING CTA -->
-    <section class="section closing-cta bg-chocolate">
+    <section class="closing section">
       <div class="container">
-        <div class="closing-cta__inner reveal">
-          <p class="t-label" style="opacity:0.4;margin-bottom:1.5rem;">It starts with a conversation</p>
-          <h2 class="t-display closing-cta__headline">Ready to see your<br>space the way your<br><em>guests do?</em></h2>
-          <p class="t-body-lg closing-cta__sub">A discovery call is 30 minutes, no pressure, and you'll walk away with something useful regardless of where it goes.</p>
-          <a href="/pages/contact.html#book" class="btn btn--primary">Book a Discovery Call</a>
-          <p class="t-label" style="opacity:0.3;margin-top:2rem;">Based in Nashville, TN — We travel to you</p>
+        <div class="closing__inner reveal">
+          <p class="t-label closing__label" style="color:var(--white);">It starts with a conversation</p>
+          <h2 class="t-display closing__headline">Ready to see your space the way your <em>guests do?</em></h2>
+          <p class="t-body closing__sub">A discovery call is 30 minutes, no pressure, and you'll walk away with something useful regardless of where it goes.</p>
+          <a href="/contact.html#book" class="btn btn-light">Book a Discovery Call</a>
+          <p class="t-label closing__note" style="color:var(--white);">Based in Nashville, TN — We travel to you</p>
         </div>
       </div>
     </section>
@@ -264,25 +975,70 @@
     <div class="container">
       <div class="footer__grid">
         <div>
-          <p class="footer__brand-name">Amy's Haus</p>
-          <p class="footer__brand-sub">Hospitality Experience Consulting</p>
-          <p class="footer__desc">Based in Nashville, TN. Serving destination and coastal markets across the US. We travel to you.</p>
+          <p class="footer__brand">Amy's Haus</p>
+          <p class="footer__desc">Hospitality experience consulting.<br>Based in Nashville, TN — serving destination and coastal markets across the US. We travel to you.</p>
         </div>
         <div>
-          <p class="footer__nav-heading">Pages</p>
-          <ul class="footer__nav-list">
-            <li><a href="/pages/about.html">About</a></li>
-            <li><a href="/pages/work-with-me.html">Work With Me</a></li>
-            <li><a href="/pages/journal.html">The Journal</a></li>
-            <li><a href="/pages/contact.html">Contact</a></li>
+          <p class="footer__heading">Pages</p>
+          <ul class="footer__links">
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/work-with-me.html">Work With Me</a></li>
+            <li><a href="/journal.html">The Journal</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/contact.html#book">Book a Discovery Call</a></li>
           </ul>
         </div>
-        <div>
-          <p class="footer__nav-heading">Get in Touch</p>
-          <p class="footer__contact-item"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c4a5a9bd84a5a9bdb7e9aca5b1b7eaa7aba9">[email&#160;protected]</a></p>
-          <p class="footer__contact-item">@amyshaus_</p>
+        <div class="footer__contact">
+          <p class="footer__heading">Get in Touch</p>
+          <p>amy@amys-haus.com</p>
+          <p>@amyshaus_</p>
         </div>
       </div>
       <div class="footer__bottom">
         <p>© 2025 Amy's Haus. All rights reserved.</p>
-        <p>Hospitality Experience Cons
+        <p>Nashville, TN</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // Mobile menu
+    document.getElementById('hamburger').addEventListener('click', () => {
+      const existing = document.getElementById('mobile-menu');
+      if (existing) { existing.remove(); document.body.style.overflow = ''; return; }
+      const menu = document.createElement('div');
+      menu.id = 'mobile-menu';
+      menu.style.cssText = 'position:fixed;inset:0;background:#563433;z-index:99;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;';
+      [['/', "Home"], ['/about.html', 'About'], ['/work-with-me.html', 'Work With Me'], ['/journal.html', 'The Journal'], ['/contact.html', 'Contact']].forEach(([href, text]) => {
+        const a = document.createElement('a');
+        a.href = href; a.textContent = text;
+        a.style.cssText = 'font-family:Saigon,Georgia,serif;font-style:italic;font-weight:300;font-size:2.5rem;color:white;';
+        menu.appendChild(a);
+      });
+      const close = document.createElement('button');
+      close.textContent = '×';
+      close.style.cssText = 'position:absolute;top:1.5rem;right:2rem;background:none;border:none;color:white;font-size:2.5rem;cursor:pointer;';
+      close.onclick = () => { menu.remove(); document.body.style.overflow = ''; };
+      menu.appendChild(close);
+      document.body.appendChild(menu);
+      document.body.style.overflow = 'hidden';
+    });
+  </script>
+
+</body>
+</html>

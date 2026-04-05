@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Journal — Amy's Haus</title>
+<meta name="description" content="Observations on guest experience, hospitality, and the details that make spaces worth remembering.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+@font-face{font-family:'Saigon';src:url('https://res.cloudinary.com/dxhyox3vo/raw/upload/v1775402655/Saigon-Light_vptiqs.otf') format('opentype');font-weight:300;font-style:normal;font-display:swap;}
+@font-face{font-family:'Saigon';src:url('https://res.cloudinary.com/dxhyox3vo/raw/upload/v1775402655/Saigon-LightItalic_gjbxf4.otf') format('opentype');font-weight:300;font-style:italic;font-display:swap;}
+@font-face{font-family:'Saigon';src:url('https://res.cloudinary.com/dxhyox3vo/raw/upload/v1775402656/Saigon-Regular_ltw5s4.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:'Saigon';src:url('https://res.cloudinary.com/dxhyox3vo/raw/upload/v1775402654/Saigon-Italic_ymjtcc.otf') format('opentype');font-weight:400;font-style:italic;font-display:swap;}
+@font-face{font-family:'Saigon';src:url('https://res.cloudinary.com/dxhyox3vo/raw/upload/v1775402656/Saigon-SemiBold_auvdzh.otf') format('opentype');font-weight:600;font-style:normal;font-display:swap;}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --choc:#563433;--choc-deep:#3d2524;--cream:#F5F0EA;--cream-mid:#E8DDD0;
+  --white:#FFFFFF;--ink:#1A1A1A;--ink-muted:#5a4a48;
+  --serif:'Saigon',Georgia,serif;--sans:'Work Sans',system-ui,sans-serif;
+  --gutter:clamp(1.5rem,5vw,5rem);--radius:2rem;--pill:100px;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);overflow-x:hidden;margin:0;}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.75rem var(--gutter);display:flex;align-items:center;justify-content:space-between;background:rgba(86,52,51,0.97);backdrop-filter:blur(12px);transition:padding .5s var(--ease);}
+.nav.scrolled{padding:1.1rem var(--gutter);}
+.nav__logo{font-family:var(--serif);font-weight:300;font-style:italic;font-size:1.25rem;color:var(--white);}
+.nav__links{display:flex;align-items:center;gap:2.5rem;list-style:none;}
+.nav__links a{font-family:var(--sans);font-weight:400;font-size:0.75rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.75);transition:color .3s;}
+.nav__links a:hover{color:var(--white);}
+.nav__cta{font-family:var(--sans);font-weight:500;font-size:0.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.65rem 1.5rem;border-radius:var(--pill);border:1.5px solid rgba(255,255,255,0.4);color:var(--white);transition:all .35s var(--ease);}
+.nav__cta:hover{background:var(--white);color:var(--choc);}
+.nav__hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;}
+.nav__hamburger span{display:block;width:24px;height:1.5px;background:var(--white);}
+
+/* HERO */
+.journal-hero{background:var(--choc);padding:clamp(8rem,12vw,12rem) var(--gutter) clamp(4rem,6vw,6rem);position:relative;overflow:hidden;}
+.journal-hero__monogram{position:absolute;bottom:-5%;right:-1%;width:clamp(200px,28vw,420px);opacity:0.07;pointer-events:none;}
+.journal-hero__monogram img{width:100%;height:auto;}
+.journal-hero__label{font-family:var(--sans);font-weight:500;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:1.25rem;}
+.journal-hero__heading{font-family:var(--serif);font-weight:300;font-size:clamp(3rem,7vw,6rem);line-height:1.05;color:var(--white);}
+.journal-hero__heading em{font-style:italic;opacity:0.7;}
+.journal-hero__sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,1.3vw,1.1rem);line-height:1.8;color:rgba(255,255,255,0.55);margin-top:1.5rem;max-width:560px;}
+
+/* POSTS GRID */
+.posts-section{padding:clamp(4rem,7vw,8rem) var(--gutter);}
+.posts-section .container{max-width:1320px;margin:0 auto;}
+
+.posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+
+/* POST CARD */
+.post-card{background:var(--white);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .35s var(--ease),box-shadow .35s var(--ease);cursor:pointer;}
+.post-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(86,52,51,0.1);}
+.post-card__image{aspect-ratio:16/10;background:var(--cream-mid);overflow:hidden;}
+.post-card__image img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);}
+.post-card:hover .post-card__image img{transform:scale(1.04);}
+.post-card__image-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--cream-mid);}
+.post-card__body{padding:1.75rem;display:flex;flex-direction:column;gap:0.75rem;flex:1;}
+.post-card__meta{display:flex;align-items:center;justify-content:space-between;}
+.post-card__category{font-family:var(--sans);font-weight:500;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--choc);opacity:0.55;}
+.post-card__date{font-family:var(--sans);font-weight:300;font-size:0.72rem;color:var(--ink-muted);opacity:0.6;}
+.post-card__title{font-family:var(--serif);font-weight:300;font-size:clamp(1.2rem,2vw,1.5rem);line-height:1.25;color:var(--choc);}
+.post-card__excerpt{font-family:var(--sans);font-weight:300;font-size:0.88rem;line-height:1.75;color:var(--ink-muted);flex:1;}
+.post-card__arrow{font-family:var(--sans);font-weight:500;font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--choc);opacity:0.4;display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;transition:opacity .3s,gap .3s var(--ease);}
+.post-card:hover .post-card__arrow{opacity:1;gap:0.75rem;}
+
+/* LOADING STATE */
+.posts-loading{text-align:center;padding:4rem 0;}
+.posts-loading p{font-family:var(--serif);font-weight:300;font-style:italic;font-size:1.2rem;color:var(--choc);opacity:0.4;}
+
+/* EMPTY STATE */
+.posts-empty{text-align:center;padding:6rem 0;}
+.posts-empty__heading{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(1.5rem,3vw,2.5rem);color:var(--choc);margin-bottom:1rem;opacity:0.6;}
+.posts-empty__sub{font-family:var(--sans);font-weight:300;font-size:0.95rem;color:var(--ink-muted);line-height:1.8;margin-bottom:2rem;}
+
+/* FOOTER */
+.footer{background:var(--choc-deep);color:var(--white);padding:clamp(3rem,5vw,5rem) var(--gutter) clamp(1.5rem,2vw,2rem);}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:clamp(2rem,5vw,6rem);padding-bottom:2.5rem;margin-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,0.08);}
+.footer-brand{font-family:var(--serif);font-weight:300;font-style:italic;font-size:1.4rem;margin-bottom:.5rem;}
+.footer-desc{font-size:.85rem;color:rgba(255,255,255,0.45);line-height:1.75;font-weight:300;}
+.footer-heading{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1rem;font-family:var(--sans);}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
+.footer-links a{font-size:.9rem;color:rgba(255,255,255,0.6);font-weight:300;transition:color .3s;}
+.footer-links a:hover{color:var(--white);}
+.footer-bottom{display:flex;justify-content:space-between;font-size:.72rem;color:rgba(255,255,255,0.25);}
+
+@media(max-width:1024px){.posts-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:768px){
+  .posts-grid{grid-template-columns:1fr;}
+  .nav__links,.nav__cta{display:none;}
+  .nav__hamburger{display:flex;}
+  .footer-grid{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column;gap:.5rem;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="/" class="nav__logo">Amy's Haus</a>
+  <ul class="nav__links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#philosophy">Start Here</a></li>
+    <li><a href="/journal.html">The Journal</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+  </ul>
+  <a href="/contact.html#book" class="nav__cta">Book a Discovery Call</a>
+  <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="journal-hero">
+  <div class="journal-hero__monogram">
+    <img src="https://res.cloudinary.com/dxhyox3vo/image/upload/q_auto/f_auto/v1775346313/AmysHausLogo_argabt.svg" alt="">
+  </div>
+  <p class="journal-hero__label">The Journal</p>
+  <h1 class="journal-hero__heading">Observations on <em>experience.</em></h1>
+  <p class="journal-hero__sub">Thoughts on guest experience, hospitality, and the details that make spaces worth remembering.</p>
+</section>
+
+<!-- POSTS -->
+<section class="posts-section">
+  <div class="container">
+    <div id="posts-loading" class="posts-loading">
+      <p>Loading...</p>
+    </div>
+    <div id="posts-grid" class="posts-grid" style="display:none;"></div>
+    <div id="posts-empty" class="posts-empty" style="display:none;">
+      <p class="posts-empty__heading">Something is coming.</p>
+      <p class="posts-empty__sub">We're compiling our thoughts on what makes hospitality work — and what quietly kills it.<br>Follow along on Instagram <a href="https://www.instagram.com/amyshaus_/" target="_blank" style="color:var(--choc);">@amyshaus_</a> for now.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div style="max-width:1320px;margin:0 auto;">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand">Amy's Haus</p>
+        <p class="footer-desc">Designing the guest experience. Based in Nashville, TN — serving destination markets across the globe.</p>
+      </div>
+      <div>
+        <p class="footer-heading">Pages</p>
+        <ul class="footer-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#philosophy">Start Here</a></li>
+          <li><a href="/journal.html">The Journal</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <a href="https://www.instagram.com/amyshaus_/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.6);font-size:.85rem;font-weight:300;transition:color .3s;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+          @amyshaus_
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Amy's Haus. All rights reserved.</p>
+      <p>Nashville, TN</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+window.onscroll = function() {
+  const nav = document.getElementById('nav');
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+};
+
+// Sanity config
+const SANITY_PROJECT_ID = 'eugrcsp3';
+const SANITY_DATASET = 'production';
+const SANITY_API_VERSION = '2024-01-01';
+
+// Category labels
+const categoryLabels = {
+  observer: 'The Observer',
+  educator: 'The Educator',
+  philosophy: 'The Philosophy',
+  process: 'Behind the Process'
+};
+
+// Format date
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+// Build Cloudinary/Sanity image URL
+function imageUrl(ref) {
+  if (!ref) return null;
+  const [, id, dimensions, format] = ref.split('-');
+  return `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${id}-${dimensions}.${format}`;
+}
+
+// Fetch posts from Sanity
+async function fetchPosts() {
+  const query = encodeURIComponent(`*[_type == "journalPost"] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    publishedAt,
+    excerpt,
+    category,
+    coverImage
+  }`);
+
+  const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}?query=${query}`;
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.result || [];
+  } catch(e) {
+    console.error('Failed to fetch posts:', e);
+    return [];
+  }
+}
+
+// Render posts
+function renderPosts(posts) {
+  const grid = document.getElementById('posts-grid');
+  const empty = document.getElementById('posts-empty');
+  const loading = document.getElementById('posts-loading');
+
+  loading.style.display = 'none';
+
+  if (!posts.length) {
+    empty.style.display = 'block';
+    return;
+  }
+
+  grid.style.display = 'grid';
+  grid.innerHTML = posts.map(post => {
+    const imgSrc = post.coverImage?.asset?._ref ? imageUrl(post.coverImage.asset._ref) : null;
+    const category = categoryLabels[post.category] || post.category || '';
+    const date = formatDate(post.publishedAt);
+    const slug = post.slug?.current || '';
+
+    return `
+      <a href="/journal/${slug}.html" class="post-card">
+        <div class="post-card__image">
+          ${imgSrc
+            ? `<img src="${imgSrc}" alt="${post.title}" loading="lazy">`
+            : `<div class="post-card__image-placeholder"></div>`
+          }
+        </div>
+        <div class="post-card__body">
+          <div class="post-card__meta">
+            <span class="post-card__category">${category}</span>
+            <span class="post-card__date">${date}</span>
+          </div>
+          <h2 class="post-card__title">${post.title}</h2>
+          ${post.excerpt ? `<p class="post-card__excerpt">${post.excerpt}</p>` : ''}
+          <div class="post-card__arrow">
+            Read
+            <svg width="16" height="12" viewBox="0 0 18 14" fill="none"><path d="M1 7H17M11 1L17 7L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </a>
+    `;
+  }).join('');
+}
+
+// Init
+fetchPosts().then(renderPosts);
+</script>
+</body>
+</html>

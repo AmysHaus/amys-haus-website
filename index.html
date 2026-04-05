@@ -47,6 +47,7 @@ a{color:inherit;text-decoration:none;}
 .hero__left{display:flex;flex-direction:column;gap:.4rem;}
 .hero__wordmark{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(2.5rem,5.5vw,5rem);color:var(--white);line-height:1;}
 .hero__tagline{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(.85rem,1.2vw,1.05rem);color:rgba(255,255,255,0.55);}
+.hero__subtitle{font-family:var(--sans);font-weight:400;font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:0.4rem;}
 .hero__monogram{width:clamp(180px,25vw,380px);margin-bottom:-2rem;}
 .hero__monogram img{width:100%;height:auto;}
 .hero__rule{width:100%;height:1px;background:rgba(255,255,255,0.3);}
@@ -118,8 +119,16 @@ a{color:inherit;text-decoration:none;}
 .btn-outline-choc{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.4);}
 .btn-outline-choc:hover{background:rgba(255,255,255,0.1);border-color:var(--white);}
 
+.pillars{background-color:#F5F0EA;padding:6rem var(--gutter);}.pillars__strip{width:100%;display:block;line-height:0;margin:0;padding:0;object-fit:fill;object-position:left top;}
+.pillars__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;}
+.pillar{background:var(--white);border-top:3px solid var(--choc);padding:2rem 1.75rem;border-radius:0 0 var(--radius) var(--radius);}
+.pillar__header{display:flex;align-items:center;justify-content:space-between;gap:0.75rem;margin-bottom:0.85rem;}
+.pillar__icon{width:24px;height:24px;flex-shrink:0;}
+.pillar__name{font-family:var(--serif);font-weight:300;font-size:clamp(1.4rem,2.5vw,2rem);color:var(--choc);line-height:1;margin-bottom:0;}
+.pillar__desc{font-family:var(--sans);font-weight:300;font-size:0.82rem;line-height:1.75;color:var(--ink-muted);}
+
 @media(max-width:900px){
-  .grid-2,.services-grid,.footer-grid{grid-template-columns:1fr;}
+  .grid-2,.services-grid,.footer-grid,.pillars__grid{grid-template-columns:1fr;gap:2rem;}
   .nav__links,.nav__cta{display:none;}
 }
 </style>
@@ -129,8 +138,8 @@ a{color:inherit;text-decoration:none;}
 <nav class="nav" id="nav">
   <a href="/" class="nav__logo">Amy's Haus</a>
   <ul class="nav__links">
-    <li><a href="/about.html">About</a></li>
-    <li><a href="/work-with-me.html">Work With Me</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#philosophy">Start Here</a></li>
     <li><a href="/journal.html">The Journal</a></li>
     <li><a href="/contact.html">Contact</a></li>
   </ul>
@@ -146,6 +155,7 @@ a{color:inherit;text-decoration:none;}
     <div class="hero__above-rule">
       <div class="hero__left">
         <p class="hero__wordmark">Amy's Haus</p>
+        <p class="hero__subtitle">Integrated design for the modern guest experience</p>
         </div>
       <div class="hero__monogram">
         <img src="https://res.cloudinary.com/dxhyox3vo/image/upload/q_auto/f_auto/v1775346313/AmysHausLogo_argabt.svg" alt="AH">
@@ -161,7 +171,7 @@ a{color:inherit;text-decoration:none;}
   </div>
 </section>
 
-<section class="amy section">
+<section class="amy section" id="about">
   <div class="container">
     <div class="grid-2">
       <div>
@@ -181,7 +191,7 @@ a{color:inherit;text-decoration:none;}
           <p>The gap between a good experience and an unforgettable one is smaller than most properties realise.<br><br>If you're looking to elevate your business and enhance your guest experience, <strong><em>let's have a conversation.</em></strong></p>
         </div>
         <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-          <a href="/about.html" class="btn btn-dark">More About Amy</a>
+          <a href="#about" class="btn btn-dark">More About Amy</a>
           <a href="/contact.html#book" class="btn btn-outline-choc">Book a Discovery Call</a>
         </div>
       </div>
@@ -189,7 +199,44 @@ a{color:inherit;text-decoration:none;}
   </div>
 </section>
 
-<section class="services section">
+<section class="pillars section" id="philosophy">
+
+  <div class="container">
+    <p class="section-label" style="margin-bottom:2rem;">Our Design Philosophy</p>
+    <div class="pillars__grid">
+      <div class="pillar">
+        <div class="pillar__header">
+          <h3 class="pillar__name">Space</h3>
+          <svg class="pillar__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="24" height="24" rx="2" stroke="#563433" stroke-width="1.5"/></svg>
+        </div>
+        <p class="pillar__desc">Color, materiality, surfaces, finishes, furnishings</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar__header">
+          <h3 class="pillar__name">Senses</h3>
+          <svg class="pillar__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 6C11.582 6 8 9.582 8 14v7a3 3 0 006 0v-7a2 2 0 114 0v7a3 3 0 006 0v-7c0-4.418-3.582-8-8-8z" stroke="#563433" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="pillar__desc">Sound, lighting, scent, temperature</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar__header">
+          <h3 class="pillar__name">People</h3>
+          <svg class="pillar__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="10" r="4" stroke="#563433" stroke-width="1.5"/><path d="M8 26c0-4.418 3.582-8 8-8s8 3.582 8 8" stroke="#563433" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <p class="pillar__desc">Human activation of your brand</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar__header">
+          <h3 class="pillar__name">Experience</h3>
+          <svg class="pillar__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 4l3.09 6.26L26 11.27l-5 4.87 1.18 6.88L16 19.77l-6.18 3.25L11 16.14 6 11.27l6.91-1.01L16 4z" stroke="#563433" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="pillar__desc">The integration of detail</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services section" id="services">
   <div class="container">
     <p class="section-label">How we work together</p>
     <h2 class="section-heading">Every great experience starts with seeing clearly.</h2>
@@ -222,10 +269,10 @@ a{color:inherit;text-decoration:none;}
 <section class="closing section">
   <div class="container">
     <div class="closing-inner">
-      <h2>Ready to see your space the way your <em>guests do?</em></h2>
-      <p class="closing-sub">A discovery call is 30 minutes, no pressure, and you'll walk away with something useful regardless of where it goes.</p>
+      <h2>Ready to create an experience <em>worth remembering?</em></h2>
+      <p class="closing-sub">A conversation about your property, your guests, and the brand experience you want to create.</p>
       <a href="/contact.html#book" class="btn btn-light">Book a Discovery Call</a>
-      <p class="closing-note">Based in Nashville, TN — We travel to you</p>
+      
     </div>
   </div>
 </section>
@@ -235,21 +282,22 @@ a{color:inherit;text-decoration:none;}
     <div class="footer-grid">
       <div>
         <p class="footer-brand">Amy's Haus</p>
-        <p class="footer-desc">Hospitality experience consulting. Based in Nashville, TN — serving destination and coastal markets across the US.</p>
+        <p class="footer-desc">Designing the guest experience. Based in Nashville, TN — serving destination markets across the globe.</p>
       </div>
       <div>
         <p class="footer-heading">Pages</p>
         <ul class="footer-links">
-          <li><a href="/about.html">About</a></li>
-          <li><a href="/work-with-me.html">Work With Me</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#philosophy">Start Here</a></li>
           <li><a href="/journal.html">The Journal</a></li>
           <li><a href="/contact.html">Contact</a></li>
         </ul>
       </div>
       <div class="footer-contact">
-        <p class="footer-heading">Get in Touch</p>
-        <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7415190d3415190d07591c1501075a171b19">[email&#160;protected]</a></p>
-        <p>@amyshaus_</p>
+        <a href="https://www.instagram.com/amyshaus_/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.6);font-size:.85rem;font-weight:300;transition:color .3s;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+          @amyshaus_
+        </a>
       </div>
     </div>
     <div class="footer-bottom">

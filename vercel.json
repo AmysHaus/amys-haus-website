@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/journal/:slug", "destination": "/journal-post.html" }
+  ]
+}

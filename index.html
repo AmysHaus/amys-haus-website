@@ -10,35 +10,35 @@
 
     @font-face {
       font-family: 'Saigon';
-      src: url('https://raw.githubusercontent.com/AmysHaus/amys-haus-website/main/public/fonts/Saigon-Light.otf') format('opentype');
+      src: url('https://res.cloudinary.com/dxhyox3vo/raw/upload/v1775402655/Saigon-Light_vptiqs.otf') format('opentype');
       font-weight: 300;
       font-style: normal;
       font-display: swap;
     }
     @font-face {
       font-family: 'Saigon';
-      src: url('https://raw.githubusercontent.com/AmysHaus/amys-haus-website/main/public/fonts/Saigon-LightItalic.otf') format('opentype');
+      src: url('https://res.cloudinary.com/dxhyox3vo/raw/upload/v1775402655/Saigon-LightItalic_gjbxf4.otf') format('opentype');
       font-weight: 300;
       font-style: italic;
       font-display: swap;
     }
     @font-face {
       font-family: 'Saigon';
-      src: url('https://raw.githubusercontent.com/AmysHaus/amys-haus-website/main/public/fonts/Saigon-Regular.otf') format('opentype');
+      src: url('https://res.cloudinary.com/dxhyox3vo/raw/upload/v1775402656/Saigon-Regular_ltw5s4.otf') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
     }
     @font-face {
       font-family: 'Saigon';
-      src: url('https://raw.githubusercontent.com/AmysHaus/amys-haus-website/main/public/fonts/Saigon-Italic.otf') format('opentype');
+      src: url('https://res.cloudinary.com/dxhyox3vo/raw/upload/v1775402654/Saigon-Italic_ymjtcc.otf') format('opentype');
       font-weight: 400;
       font-style: italic;
       font-display: swap;
     }
     @font-face {
       font-family: 'Saigon';
-      src: url('https://raw.githubusercontent.com/AmysHaus/amys-haus-website/main/public/fonts/Saigon-SemiBold.otf') format('opentype');
+      src: url('https://res.cloudinary.com/dxhyox3vo/raw/upload/v1775402656/Saigon-SemiBold_auvdzh.otf') format('opentype');
       font-weight: 600;
       font-style: normal;
       font-display: swap;
@@ -307,6 +307,10 @@
 
     .hero__pre-rule {
       margin-bottom: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
     }
 
     .hero__wordmark {
@@ -315,6 +319,14 @@
       font-style: italic;
       font-size: clamp(1rem, 1.8vw, 1.4rem);
       color: var(--white);
+    }
+
+    .hero__monogram {
+      width: clamp(220px, 30vw, 460px);
+    }
+    .hero__monogram img {
+      width: 100%;
+      height: auto;
     }
 
     .hero__rule {
@@ -326,8 +338,8 @@
 
     .hero__foot {
       display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
+      align-items: baseline;
+      justify-content: flex-start;
       width: 100%;
     }
 
@@ -337,15 +349,6 @@
       font-style: italic;
       font-size: clamp(0.85rem, 1.2vw, 1.05rem);
       color: rgba(255,255,255,0.55);
-    }
-
-    .hero__monogram {
-      width: clamp(220px, 30vw, 460px);
-      margin-bottom: -0.5rem;
-    }
-    .hero__monogram img {
-      width: 100%;
-      height: auto;
     }
 
     /* =====================
@@ -765,13 +768,13 @@
       <div class="hero__bottom container">
         <div class="hero__pre-rule">
           <p class="hero__wordmark">Amy's Haus</p>
+          <div class="hero__monogram">
+            <img src="https://res.cloudinary.com/dxhyox3vo/image/upload/q_auto/f_auto/v1775346313/AmysHausLogo_argabt.svg" alt="Amy's Haus">
+          </div>
         </div>
         <div class="hero__rule"></div>
         <div class="hero__foot">
           <p class="hero__tagline">Creating spaces worth remembering.</p>
-          <div class="hero__monogram">
-            <img src="https://res.cloudinary.com/dxhyox3vo/image/upload/q_auto/f_auto/v1775346313/AmysHausLogo_argabt.svg" alt="Amy's Haus">
-          </div>
         </div>
       </div>
     </section>

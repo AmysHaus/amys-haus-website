@@ -305,13 +305,16 @@
       width: 100%;
     }
 
-    .hero__monogram {
-      width: clamp(140px, 18vw, 280px);
-      margin-bottom: 1.25rem;
+    .hero__pre-rule {
+      margin-bottom: 1.1rem;
     }
-    .hero__monogram img {
-      width: 100%;
-      height: auto;
+
+    .hero__wordmark {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1rem, 1.8vw, 1.4rem);
+      color: var(--white);
     }
 
     .hero__rule {
@@ -323,17 +326,9 @@
 
     .hero__foot {
       display: flex;
-      align-items: baseline;
+      align-items: flex-end;
       justify-content: space-between;
       width: 100%;
-    }
-
-    .hero__wordmark {
-      font-family: var(--serif);
-      font-weight: 300;
-      font-style: italic;
-      font-size: clamp(1rem, 1.8vw, 1.4rem);
-      color: var(--white);
     }
 
     .hero__tagline {
@@ -342,6 +337,15 @@
       font-style: italic;
       font-size: clamp(0.85rem, 1.2vw, 1.05rem);
       color: rgba(255,255,255,0.55);
+    }
+
+    .hero__monogram {
+      width: clamp(220px, 30vw, 460px);
+      margin-bottom: -0.5rem;
+    }
+    .hero__monogram img {
+      width: 100%;
+      height: auto;
     }
 
     /* =====================
@@ -759,13 +763,15 @@
         <div class="hero__overlay"></div>
       </div>
       <div class="hero__bottom container">
-        <div class="hero__monogram">
-          <img src="https://res.cloudinary.com/dxhyox3vo/image/upload/q_auto/f_auto/v1775346313/AmysHausLogo_argabt.svg" alt="Amy's Haus">
+        <div class="hero__pre-rule">
+          <p class="hero__wordmark">Amy's Haus</p>
         </div>
         <div class="hero__rule"></div>
         <div class="hero__foot">
-          <p class="hero__wordmark">Amy's Haus</p>
           <p class="hero__tagline">Creating spaces worth remembering.</p>
+          <div class="hero__monogram">
+            <img src="https://res.cloudinary.com/dxhyox3vo/image/upload/q_auto/f_auto/v1775346313/AmysHausLogo_argabt.svg" alt="Amy's Haus">
+          </div>
         </div>
       </div>
     </section>
@@ -990,7 +996,7 @@
         </div>
         <div class="footer__contact">
           <p class="footer__heading">Get in Touch</p>
-          <p>amy@amys-haus.com</p>
+          <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c7a6aabe87a6aabeb4eaafa6b2b4e9a4a8aa">[email&#160;protected]</a></p>
           <p>@amyshaus_</p>
         </div>
       </div>
@@ -1001,7 +1007,7 @@
     </div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Nav scroll
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
@@ -1033,12 +1039,4 @@
       const close = document.createElement('button');
       close.textContent = '×';
       close.style.cssText = 'position:absolute;top:1.5rem;right:2rem;background:none;border:none;color:white;font-size:2.5rem;cursor:pointer;';
-      close.onclick = () => { menu.remove(); document.body.style.overflow = ''; };
-      menu.appendChild(close);
-      document.body.appendChild(menu);
-      document.body.style.overflow = 'hidden';
-    });
-  </script>
-
-</body>
-</html>
+      clo

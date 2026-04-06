@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amy's Haus</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+@font-face{font-family:'Saigon';src:url('https://res.cloudinary.com/dxhyox3vo/raw/upload/v1775402655/Saigon-Light_vptiqs.otf') format('opentype');font-weight:300;font-style:normal;font-display:swap;}
+@font-face{font-family:'Saigon';src:url('https://res.cloudinary.com/dxhyox3vo/raw/upload/v1775402655/Saigon-LightItalic_gjbxf4.otf') format('opentype');font-weight:300;font-style:italic;font-display:swap;}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --choc:#563433;--choc-deep:#3d2524;--cream:#F5F0EA;
+  --white:#FFFFFF;
+  --serif:'Saigon',Georgia,serif;--sans:'Work Sans',system-ui,sans-serif;
+  --gutter:clamp(1.5rem,5vw,5rem);
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+html,body{height:100%;font-size:16px;-webkit-font-smoothing:antialiased;}
+body{font-family:var(--sans);background:var(--choc);color:var(--white);overflow:hidden;margin:0;display:flex;flex-direction:column;}
+
+/* BG IMAGE */
+.bg{position:fixed;inset:0;z-index:0;}
+.bg img{width:100%;height:100%;object-fit:cover;object-position:center top;opacity:0.4;}
+
+/* LAYOUT */
+.page{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;min-height:100vh;padding:0 var(--gutter) clamp(2rem,4vw,3.5rem);}
+
+/* MIDDLE CONTENT */
+.middle{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:100%;padding:0 var(--gutter);z-index:2;}
+
+.middle__message{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(1rem,1.5vw,1.3rem);color:rgba(255,255,255,0.55);margin-bottom:2.5rem;line-height:1.7;max-width:480px;margin-left:auto;margin-right:auto;}
+
+/* PASSWORD FORM */
+.gate{display:flex;align-items:center;gap:0;max-width:380px;margin:0 auto;}
+.gate__input{flex:1;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.2);border-right:none;border-radius:100px 0 0 100px;padding:0.85rem 1.5rem;color:var(--white);font-family:var(--sans);font-size:0.85rem;font-weight:300;outline:none;transition:border-color .3s;}
+.gate__input::placeholder{color:rgba(255,255,255,0.35);}
+.gate__input:focus{border-color:rgba(255,255,255,0.5);}
+.gate__btn{background:var(--white);color:var(--choc);border:none;border-radius:0 100px 100px 0;padding:0.85rem 1.5rem;font-family:var(--sans);font-weight:500;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:background .3s var(--ease);white-space:nowrap;}
+.gate__btn:hover{background:var(--cream);}
+.gate__error{font-family:var(--sans);font-size:0.75rem;color:rgba(255,180,180,0.8);margin-top:0.85rem;opacity:0;transition:opacity .3s;}
+.gate__error.visible{opacity:1;}
+
+/* BOTTOM BAR — same as homepage hero */
+.bottom{position:relative;z-index:1;}
+.above-rule{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:1rem;}
+.wordmark{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(2.5rem,5.5vw,5rem);color:var(--white);line-height:1;}
+.monogram{width:clamp(180px,25vw,380px);margin-bottom:-2rem;}
+.monogram img{width:100%;height:auto;}
+.rule{width:100%;height:1px;background:rgba(255,255,255,0.3);}
+
+/* INSTAGRAM */
+.insta{position:fixed;bottom:clamp(1.5rem,3vw,2.5rem);right:var(--gutter);z-index:3;}
+.insta a{display:inline-flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.4);font-family:var(--sans);font-size:0.72rem;font-weight:300;transition:color .3s;}
+.insta a:hover{color:rgba(255,255,255,0.8);}
+</style>
+</head>
+<body>
+
+<!-- BG -->
+<div class="bg">
+  <img src="https://res.cloudinary.com/dxhyox3vo/image/upload/q_auto/f_auto/v1775409415/amyshauslandingbg2_dfh1qr.png" alt="">
+</div>
+
+<!-- MIDDLE MESSAGE + PASSWORD -->
+<div class="middle">
+  <p class="middle__message">We're refreshing our web experience.<br>Something considered is on its way.</p>
+  <div class="gate">
+    <input class="gate__input" type="password" id="password" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkPassword()">
+    <button class="gate__btn" onclick="checkPassword()">Enter</button>
+  </div>
+  <p class="gate__error" id="gate-error">Incorrect password. Try again.</p>
+</div>
+
+<!-- BOTTOM — mirrors homepage hero -->
+<div class="page">
+  <div class="bottom">
+    <div class="above-rule">
+      <p class="wordmark">Amy's Haus</p>
+      <div class="monogram">
+        <img src="https://res.cloudinary.com/dxhyox3vo/image/upload/q_auto/f_auto/v1775346313/AmysHausLogo_argabt.svg" alt="AH">
+      </div>
+    </div>
+    <div class="rule"></div>
+  </div>
+</div>
+
+
+
+<script>
+// Check if already authenticated
+if (sessionStorage.getItem('amyshaus_auth') === 'true') {
+  window.location.href = '/index.html';
+}
+
+function checkPassword() {
+  const input = document.getElementById('password').value;
+  const error = document.getElementById('gate-error');
+
+  if (input === 'amyshaus2026!') {
+    sessionStorage.setItem('amyshaus_auth', 'true');
+    window.location.href = '/index.html';
+  } else {
+    error.classList.add('visible');
+    document.getElementById('password').value = '';
+    setTimeout(() => error.classList.remove('visible'), 3000);
+  }
+}
+</script>
+</body>
+</html>

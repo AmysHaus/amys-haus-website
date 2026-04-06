@@ -1,5 +1,8 @@
 {
   "rewrites": [
     { "source": "/journal/:slug", "destination": "/journal-post.html" }
+  ],
+  "redirects": [
+    { "source": "/", "destination": "/gate.html", "permanent": false }
   ]
 }

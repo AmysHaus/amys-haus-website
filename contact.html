@@ -256,8 +256,10 @@ a{color:inherit;text-decoration:none;}
         </div>
 
         <p class="form__error" id="intake-error">Please fill in all required fields.</p>
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAADYlBbXDfFGSC3_T" data-theme="light" style="position:absolute;opacity:0;pointer-events:none;height:0;overflow:hidden;"></div>
-        <button type="button" class="form__submit" id="intake-btn" onclick="submitIntake()">Submit & Request a Discovery Call</button>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.25rem;margin-top:0.5rem;">
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADYlBbXDfFGSC3_T" data-theme="light"></div>
+          <button type="button" class="form__submit" id="intake-btn" onclick="submitIntake()" style="margin-top:0;">Submit & Request a Discovery Call</button>
+        </div>
       </form>
     </div>
 

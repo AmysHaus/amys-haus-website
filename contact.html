@@ -139,39 +139,6 @@ a{color:inherit;text-decoration:none;}
   <p class="page-hero__sub">Whether you have a question, something resonated, or you're ready to talk about your property — we'd love to hear from you.</p>
 </section>
 
-<!-- CONTACT FORM -->
-<section class="contact-form-section">
-  <div class="contact-grid">
-    <div>
-      <p class="contact-intro__label">Send a Message</p>
-      <h2 class="contact-intro__heading">Tell us about yourself.</h2>
-      <p class="contact-intro__body">If something resonated, if you have a question, or if you just want to start a conversation — this is the place.</p>
-    </div>
-    <div>
-      <form class="form" id="contact-form">
-        <div class="form__field">
-          <label class="form__label" for="name">Name</label>
-          <input class="form__input" type="text" id="name" placeholder="Your name">
-        </div>
-        <div class="form__field">
-          <label class="form__label" for="email">Email</label>
-          <input class="form__input" type="email" id="email" placeholder="your@email.com">
-        </div>
-        <div class="form__field">
-          <label class="form__label" for="message">Message</label>
-          <textarea class="form__textarea" id="message" placeholder="Say hello..."></textarea>
-        </div>
-        <p class="form__error" id="form-error">Please fill in all fields.</p>
-        <button type="button" class="form__submit" id="submit-btn" onclick="submitContact()">Send Message</button>
-      </form>
-      <div class="form__success" id="form-success">
-        <p>Thanks for reaching out. Amy will be in touch soon.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
 
 <!-- DISCOVERY CALL INTAKE -->
 <section class="intake-section" id="book">
@@ -339,38 +306,6 @@ window.onscroll = function() {
   if (window.scrollY > 80) nav.classList.add('scrolled');
   else nav.classList.remove('scrolled');
 };
-
-// Simple contact form
-async function submitContact() {
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const message = document.getElementById('message').value.trim();
-  const error = document.getElementById('form-error');
-  const btn = document.getElementById('submit-btn');
-
-  if (!name || !email || !message) { error.style.display = 'block'; return; }
-  error.style.display = 'none';
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-
-  try {
-    const res = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, message })
-    });
-    if (res.ok) {
-      document.getElementById('contact-form').style.display = 'none';
-      document.getElementById('form-success').style.display = 'block';
-    } else {
-      btn.textContent = 'Send Message'; btn.disabled = false;
-      error.textContent = 'Something went wrong. Please try again.'; error.style.display = 'block';
-    }
-  } catch(e) {
-    btn.textContent = 'Send Message'; btn.disabled = false;
-    error.textContent = 'Something went wrong. Please try again.'; error.style.display = 'block';
-  }
-}
 
 // Intake questionnaire
 async function submitIntake() {

@@ -16,7 +16,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
   --choc:#563433;--choc-deep:#3d2524;--cream:#F5F0EA;--cream-mid:#E8DDD0;
-  --white:#FFFFFF;--ink:#1A1A1A;--ink-muted:#5a4a48;
+  --white:#FFFFFF;--ink:#1A1A1A;--ink-muted:#5a4a48;--gold:#C4956A;
   --serif:'Saigon',Georgia,serif;--sans:'Work Sans',system-ui,sans-serif;
   --gutter:clamp(1.5rem,5vw,5rem);--radius:2rem;--pill:100px;
   --ease:cubic-bezier(0.16,1,0.3,1);
@@ -41,7 +41,6 @@ a{color:inherit;text-decoration:none;}
 .hero{position:relative;height:100vh;display:flex;align-items:flex-end;padding-bottom:clamp(2rem,4vw,3.5rem);background:var(--choc);overflow:hidden;}
 .hero__bg{position:absolute;inset:0;}
 .hero__bg img{width:100%;height:100%;object-fit:cover;object-position:center top;}
-
 .hero__bottom{position:relative;z-index:2;width:100%;padding:0 var(--gutter);}
 .hero__above-rule{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:1rem;}
 .hero__left{display:flex;flex-direction:column;gap:.4rem;}
@@ -53,7 +52,8 @@ a{color:inherit;text-decoration:none;}
 .hero__rule{width:100%;height:1px;background:rgba(255,255,255,0.3);}
 
 /* TAGLINE BAND */
-.tagline-band{background:url("https://res.cloudinary.com/dxhyox3vo/image/upload/q_auto/f_auto/v1775410860/amyshaustextlandingbg_j7g7gk.png") top center/100% auto no-repeat;background-color:unset;padding:0;text-align:center;overflow:hidden;aspect-ratio:4.8/1;display:flex;align-items:center;justify-content:center;}.tagline-band .accent{color:var(--choc);}.tagline-band p{color:var(--choc);}
+.tagline-band{background:url("https://res.cloudinary.com/dxhyox3vo/image/upload/q_auto/f_auto/v1775410860/amyhaustextlandingbg_j7g7gk.png") top center/100% auto no-repeat;background-color:unset;padding:0;text-align:center;overflow:hidden;aspect-ratio:4.8/1;display:flex;align-items:center;justify-content:center;}
+.tagline-band .accent{color:var(--choc);}
 .tagline-band p{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(2.2rem,4.5vw,4.5rem);line-height:1.05;color:var(--choc);opacity:0;transform:translateX(180px);transition:opacity 2.4s cubic-bezier(0.16,1,0.3,1),transform 2.4s cubic-bezier(0.16,1,0.3,1);}
 .tagline-band p.animate{opacity:1;transform:translateX(0);}
 
@@ -61,18 +61,68 @@ a{color:inherit;text-decoration:none;}
 .section{padding:clamp(3.5rem,6vw,7rem) var(--gutter);}
 .container{max-width:1320px;margin:0 auto;}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,6vw,8rem);align-items:center;}
-.section-label{font-family:var(--sans);font-weight:500;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--choc);opacity:.5;margin-bottom:.85rem;}.amy .section-label{font-size:1.1rem;letter-spacing:.12em;opacity:.7;margin-bottom:1rem;}.amy .section-label{color:var(--white);opacity:.45;}.amy .section-heading{color:var(--white);}.amy .section-body{color:rgba(255,255,255,0.65);}.amy .btn-dark{background:var(--white);color:var(--choc);}
+.section-label{font-family:var(--sans);font-weight:500;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--choc);opacity:.5;margin-bottom:.85rem;}
 .section-heading{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,3.5vw,3.2rem);line-height:1.15;color:var(--choc);margin-bottom:1.5rem;}
 .section-body{font-family:var(--sans);font-weight:300;font-size:clamp(.95rem,1.1vw,1.05rem);line-height:1.8;color:var(--ink-muted);margin-bottom:2rem;}
 .section-body p+p{margin-top:1.25rem;}
-.section-body em{font-family:var(--serif);font-style:italic;color:var(--choc);}.amy .section-body em{font-family:var(--sans);color:var(--white);opacity:1;}
+.section-body em{font-family:var(--serif);font-style:italic;color:var(--choc);}
 
 /* AMY */
 .amy{background:var(--choc);}
+.amy .section-label{color:rgba(255,255,255,0.45);}
+.amy .section-heading{color:var(--white);}
+.amy .section-body{color:rgba(255,255,255,0.65);}
+.amy .section-body em{color:var(--white);opacity:1;font-family:var(--sans);}
+.amy .btn-dark{background:var(--white);color:var(--choc);}
 .amy-img{border-radius:var(--radius) var(--radius) 0 0;overflow:hidden;aspect-ratio:3/4;}
 .amy-img img{width:100%;height:100%;object-fit:cover;}
 .amy-quote{background:var(--choc-deep);color:var(--white);padding:1.75rem 2rem;border-radius:0 0 var(--radius) var(--radius);}
 .amy-quote p{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(1rem,1.4vw,1.2rem);line-height:1.5;opacity:.85;}
+
+/* PILLARS */
+.pillars{background-color:#F5F0EA;padding:6rem var(--gutter);}
+.pillars__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;}
+.pillar{background:var(--white);border-top:3px solid var(--choc);padding:2rem 1.75rem;border-radius:0 0 var(--radius) var(--radius);}
+.pillar__header{display:flex;align-items:center;justify-content:space-between;gap:0.75rem;margin-bottom:0.85rem;}
+.pillar__icon{width:24px;height:24px;flex-shrink:0;}
+.pillar__name{font-family:var(--serif);font-weight:300;font-size:clamp(1.4rem,2.5vw,2rem);color:var(--choc);line-height:1;margin-bottom:0;}
+.pillar__desc{font-family:var(--sans);font-weight:300;font-size:0.82rem;line-height:1.75;color:var(--ink-muted);}
+
+/* GALLERY */
+.gallery{background:var(--choc-deep);padding:clamp(4rem,7vw,8rem) var(--gutter);overflow:hidden;}
+.gallery__header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.5rem;max-width:1320px;margin-left:auto;margin-right:auto;}
+.gallery__label{font-family:var(--sans);font-weight:500;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.75rem;}
+.gallery__heading{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,3.5vw,3rem);line-height:1.1;color:var(--white);}
+.gallery__heading em{font-style:italic;opacity:0.65;}
+.gallery__count{font-family:var(--sans);font-weight:300;font-size:0.78rem;color:rgba(255,255,255,0.3);letter-spacing:0.05em;}
+.gallery__grid{display:grid;grid-template-columns:repeat(12,1fr);gap:0.75rem;max-width:1320px;margin:0 auto;}
+
+/* Gallery layout: item 1 = wide, items 2-3 = tall stacked, items 4-6 = three equal */
+.gallery__item{overflow:hidden;border-radius:1rem;cursor:pointer;position:relative;}
+.gallery__item:nth-child(1){grid-column:span 5;aspect-ratio:4/3;}
+.gallery__item:nth-child(2){grid-column:span 4;aspect-ratio:3/4;}
+.gallery__item:nth-child(3){grid-column:span 3;aspect-ratio:3/4;}
+.gallery__item:nth-child(4){grid-column:span 4;aspect-ratio:4/3;}
+.gallery__item:nth-child(5){grid-column:span 4;aspect-ratio:4/3;}
+.gallery__item:nth-child(6){grid-column:span 4;aspect-ratio:4/3;}
+.gallery__item img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease),filter .4s;}
+.gallery__item:hover img{transform:scale(1.05);filter:brightness(1.05);}
+.gallery__item__overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(61,37,36,0.6) 0%,transparent 50%);opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:1.25rem;}
+.gallery__item:hover .gallery__item__overlay{opacity:1;}
+.gallery__item__caption{font-family:var(--sans);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.8);}
+.gallery__placeholder{grid-column:1/-1;text-align:center;padding:4rem 0;}
+.gallery__placeholder p{font-family:var(--serif);font-weight:300;font-style:italic;font-size:1.1rem;color:rgba(255,255,255,0.25);}
+
+/* Gallery lightbox */
+.lightbox{display:none;position:fixed;inset:0;z-index:500;background:rgba(20,8,8,0.93);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:2rem;}
+.lightbox.open{display:flex;}
+.lightbox__img{max-width:90vw;max-height:85vh;object-fit:contain;border-radius:0.5rem;}
+.lightbox__close{position:absolute;top:1.5rem;right:2rem;background:none;border:none;color:rgba(255,255,255,0.5);font-size:2rem;cursor:pointer;line-height:1;transition:color .3s;}
+.lightbox__close:hover{color:var(--white);}
+.lightbox__nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:var(--white);width:48px;height:48px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .3s;}
+.lightbox__nav:hover{background:rgba(255,255,255,0.2);}
+.lightbox__prev{left:1.5rem;}
+.lightbox__next{right:1.5rem;}
 
 /* SERVICES */
 .services{background:var(--cream-mid);}
@@ -85,7 +135,6 @@ a{color:inherit;text-decoration:none;}
 .card-title{font-family:var(--serif);font-weight:400;font-size:1.4rem;color:var(--choc);line-height:1.2;}
 .card-type{font-family:var(--sans);font-weight:500;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--choc);opacity:.4;}
 .card-desc{font-family:var(--sans);font-weight:300;font-size:.9rem;line-height:1.75;color:var(--ink-muted);flex:1;}
-.card-price{font-family:var(--sans);font-weight:500;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--choc);opacity:.55;}
 .card-arrow{color:var(--choc);opacity:.25;align-self:flex-end;transition:opacity .3s,transform .3s var(--ease);}
 .service-card:hover .card-arrow{opacity:1;transform:translateX(4px);}
 .btn-center{display:flex;justify-content:center;}
@@ -96,7 +145,6 @@ a{color:inherit;text-decoration:none;}
 .closing h2{font-family:var(--serif);font-weight:300;font-size:clamp(2.2rem,4.5vw,4.5rem);line-height:1.05;color:var(--white);margin-bottom:1.5rem;}
 .closing h2 em{font-style:italic;opacity:.7;}
 .closing-sub{font-family:var(--sans);font-weight:300;font-size:clamp(.95rem,1.1vw,1.05rem);line-height:1.8;color:rgba(255,255,255,0.55);margin-bottom:2.5rem;}
-.closing-note{font-family:var(--sans);font-weight:500;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-top:1.75rem;}
 
 /* FOOTER */
 .footer{background:var(--choc-deep);color:var(--white);padding:clamp(3rem,5vw,5rem) var(--gutter) clamp(1.5rem,2vw,2rem);}
@@ -107,7 +155,6 @@ a{color:inherit;text-decoration:none;}
 .footer-links{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
 .footer-links a{font-size:.9rem;color:rgba(255,255,255,0.6);font-weight:300;transition:color .3s;}
 .footer-links a:hover{color:var(--white);}
-.footer-contact p{font-size:.85rem;color:rgba(255,255,255,0.55);font-weight:300;margin-bottom:.5rem;}
 .footer-bottom{display:flex;justify-content:space-between;font-size:.72rem;color:rgba(255,255,255,0.25);}
 
 /* BUTTONS */
@@ -119,17 +166,11 @@ a{color:inherit;text-decoration:none;}
 .btn-outline-choc{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.4);}
 .btn-outline-choc:hover{background:rgba(255,255,255,0.1);border-color:var(--white);}
 
-.pillars{background-color:#F5F0EA;padding:6rem var(--gutter);}.pillars__strip{width:100%;display:block;line-height:0;margin:0;padding:0;object-fit:fill;object-position:left top;}
-.pillars__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;}
-.pillar{background:var(--white);border-top:3px solid var(--choc);padding:2rem 1.75rem;border-radius:0 0 var(--radius) var(--radius);}
-.pillar__header{display:flex;align-items:center;justify-content:space-between;gap:0.75rem;margin-bottom:0.85rem;}
-.pillar__icon{width:24px;height:24px;flex-shrink:0;}
-.pillar__name{font-family:var(--serif);font-weight:300;font-size:clamp(1.4rem,2.5vw,2rem);color:var(--choc);line-height:1;margin-bottom:0;}
-.pillar__desc{font-family:var(--sans);font-weight:300;font-size:0.82rem;line-height:1.75;color:var(--ink-muted);}
-
 @media(max-width:900px){
   .grid-2,.services-grid,.footer-grid,.pillars__grid{grid-template-columns:1fr;gap:2rem;}
   .nav__links,.nav__cta{display:none;}
+  .gallery__grid{grid-template-columns:1fr 1fr;}
+  .gallery__item{grid-column:span 1 !important;aspect-ratio:1/1 !important;}
 }
 </style>
 </head>
@@ -139,7 +180,7 @@ a{color:inherit;text-decoration:none;}
   <a href="/" class="nav__logo">Amy's Haus</a>
   <ul class="nav__links">
     <li><a href="#about">About</a></li>
-    <li><a href="#philosophy">Start Here</a></li>
+    <li><a href="#philosophy">Philosophy</a></li>
     <li><a href="/journal.html">The Journal</a></li>
     <li><a href="/contact.html">Contact</a></li>
   </ul>
@@ -149,14 +190,13 @@ a{color:inherit;text-decoration:none;}
 <section class="hero">
   <div class="hero__bg">
     <img src="https://res.cloudinary.com/dxhyox3vo/image/upload/q_auto/f_auto/v1775409415/amyshauslandingbg2_dfh1qr.png" alt="" loading="eager">
-    
   </div>
   <div class="hero__bottom">
     <div class="hero__above-rule">
       <div class="hero__left">
         <p class="hero__wordmark">Amy's Haus</p>
         <p class="hero__subtitle">Integrated design for the modern guest experience</p>
-        </div>
+      </div>
       <div class="hero__monogram">
         <img src="https://res.cloudinary.com/dxhyox3vo/image/upload/q_auto/f_auto/v1775346313/AmysHausLogo_argabt.svg" alt="AH">
       </div>
@@ -200,7 +240,6 @@ a{color:inherit;text-decoration:none;}
 </section>
 
 <section class="pillars section" id="philosophy">
-
   <div class="container">
     <p class="section-label" style="margin-bottom:2rem;">Our Design Philosophy</p>
     <div class="pillars__grid">
@@ -236,6 +275,34 @@ a{color:inherit;text-decoration:none;}
   </div>
 </section>
 
+<!-- PORTFOLIO GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="gallery__header">
+    <div>
+      <p class="gallery__label">Portfolio</p>
+      <h2 class="gallery__heading">Spaces we've <em>transformed.</em></h2>
+    </div>
+    <span class="gallery__count" id="gallery-count"></span>
+  </div>
+  <div class="gallery__grid" id="gallery-grid">
+    <div class="gallery__placeholder">
+      <p>Loading gallery...</p>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox__close" onclick="closeLightbox()">×</button>
+  <button class="lightbox__nav lightbox__prev" onclick="lightboxNav(-1)">
+    <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M17 7H1M7 1L1 7L7 13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <img class="lightbox__img" id="lightbox-img" src="" alt="">
+  <button class="lightbox__nav lightbox__next" onclick="lightboxNav(1)">
+    <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 7H17M11 1L17 7L11 13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</div>
+
 <section class="services section" id="services">
   <div class="container">
     <p class="section-label">How we work together</p>
@@ -246,22 +313,25 @@ a{color:inherit;text-decoration:none;}
         <h3 class="card-title">The Haus Walk</h3>
         <p class="card-type">Guest Experience Audit</p>
         <p class="card-desc">Our signature on-site assessment — the place every engagement begins.</p>
+        <svg class="card-arrow" width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 7H17M11 1L17 7L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div class="service-card">
         <div class="card-num">02</div>
         <h3 class="card-title">The Full Haus Refresh</h3>
         <p class="card-type">Creative Direction & Implementation</p>
         <p class="card-desc">The main engagement. Real, lasting change across every touchpoint of your business.</p>
+        <svg class="card-arrow" width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 7H17M11 1L17 7L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div class="service-card">
         <div class="card-num">03</div>
         <h3 class="card-title">The Ongoing Haus Partnership</h3>
         <p class="card-type">Retainer</p>
         <p class="card-desc">For clients who want to stay sharp and keep the experience evolving.</p>
+        <svg class="card-arrow" width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 7H17M11 1L17 7L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
     </div>
     <div class="btn-center">
-      <button class="btn btn-dark" onclick="openModal()">Request the Services Guide</button>
+      <a href="/contact.html#book" class="btn btn-dark">Book a Discovery Call</a>
     </div>
   </div>
 </section>
@@ -272,7 +342,6 @@ a{color:inherit;text-decoration:none;}
       <h2>Ready to create an experience <em>worth remembering?</em></h2>
       <p class="closing-sub">A conversation about your property, your guests, and the brand experience you want to create.</p>
       <a href="/contact.html#book" class="btn btn-light">Book a Discovery Call</a>
-      
     </div>
   </div>
 </section>
@@ -288,12 +357,12 @@ a{color:inherit;text-decoration:none;}
         <p class="footer-heading">Pages</p>
         <ul class="footer-links">
           <li><a href="#about">About</a></li>
-          <li><a href="#philosophy">Start Here</a></li>
+          <li><a href="#philosophy">Philosophy</a></li>
           <li><a href="/journal.html">The Journal</a></li>
           <li><a href="/contact.html">Contact</a></li>
         </ul>
       </div>
-      <div class="footer-contact">
+      <div>
         <a href="https://www.instagram.com/amyshaus_/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.6);font-size:.85rem;font-weight:300;transition:color .3s;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
           @amyshaus_
@@ -301,52 +370,23 @@ a{color:inherit;text-decoration:none;}
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 Amy's Haus. All rights reserved.</p>
+      <p>© 2026 Amy's Haus. All rights reserved.</p>
       <p>Nashville, TN</p>
     </div>
   </div>
-
 </footer>
-<!-- MODAL -->
-<div id="services-modal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(30,15,15,0.7);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:2rem;">
-  <div style="background:#563433;border-radius:2rem;padding:clamp(2.5rem,5vw,4rem);max-width:520px;width:100%;position:relative;">
-    <button onclick="closeModal()" style="position:absolute;top:1.5rem;right:1.75rem;background:none;border:none;color:rgba(255,255,255,0.5);font-size:1.75rem;cursor:pointer;line-height:1;">×</button>
-    
-    <div id="modal-form">
-      <p style="font-family:'Saigon',Georgia,serif;font-weight:300;font-style:italic;font-size:clamp(1.5rem,3vw,2.2rem);color:#fff;line-height:1.15;margin-bottom:0.5rem;">Request the Services Guide</p>
-      <p style="font-family:'Work Sans',system-ui,sans-serif;font-weight:300;font-size:0.9rem;color:rgba(255,255,255,0.55);margin-bottom:2rem;line-height:1.6;">Tell us a little about your property and we'll send the guide straight to your inbox.</p>
-      
-      <div style="display:flex;flex-direction:column;gap:1rem;">
-        <input id="f-name" type="text" placeholder="First Name" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:0.75rem;padding:0.85rem 1.25rem;color:#fff;font-family:'Work Sans',system-ui,sans-serif;font-size:0.9rem;outline:none;width:100%;">
-        <input id="f-email" type="email" placeholder="Email Address" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:0.75rem;padding:0.85rem 1.25rem;color:#fff;font-family:'Work Sans',system-ui,sans-serif;font-size:0.9rem;outline:none;width:100%;">
-        <input id="f-property" type="text" placeholder="Property Name" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:0.75rem;padding:0.85rem 1.25rem;color:#fff;font-family:'Work Sans',system-ui,sans-serif;font-size:0.9rem;outline:none;width:100%;">
-        <select id="f-role" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:0.75rem;padding:0.85rem 1.25rem;color:rgba(255,255,255,0.75);font-family:'Work Sans',system-ui,sans-serif;font-size:0.9rem;outline:none;width:100%;cursor:pointer;">
-          <option value="" disabled selected>Your Role</option>
-          <option value="Owner">Owner</option>
-          <option value="General Manager">General Manager</option>
-          <option value="Operations Manager">Operations Manager</option>
-          <option value="Marketing Manager">Marketing Manager</option>
-          <option value="Other">Other</option>
-        </select>
-        <p id="modal-error" style="color:rgba(255,180,180,0.9);font-size:0.8rem;display:none;font-family:'Work Sans',system-ui,sans-serif;">Please fill in all fields.</p>
-        <button onclick="submitForm()" id="submit-btn" class="btn btn-light" style="width:100%;justify-content:center;margin-top:0.5rem;">Send Me the Guide</button>
-      </div>
-    </div>
 
-    <div id="modal-success" style="display:none;text-align:center;padding:2rem 0;">
-      <p style="font-family:'Saigon',Georgia,serif;font-weight:300;font-style:italic;font-size:clamp(1.5rem,3vw,2rem);color:#fff;margin-bottom:1rem;">You're on the list.</p>
-      <p style="font-family:'Work Sans',system-ui,sans-serif;font-weight:300;font-size:0.9rem;color:rgba(255,255,255,0.6);line-height:1.7;">Check your inbox — the Services Guide is on its way. Looking forward to learning more about your property.</p>
-    </div>
-  </div>
-</div>
+
 
 <script>
+// Nav scroll
 const nav = document.getElementById('nav');
 window.onscroll = function() {
   if (window.scrollY > 80) nav.classList.add('scrolled');
   else nav.classList.remove('scrolled');
 };
 
+// Tagline animation
 const tagline = document.querySelector('.tagline-band p');
 if (tagline) {
   const obs = new IntersectionObserver(entries => {
@@ -355,64 +395,95 @@ if (tagline) {
   obs.observe(tagline);
 }
 
-function openModal() {
-  const modal = document.getElementById('services-modal');
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
+
+
+// ─── GALLERY ───────────────────────────────────────────────
+const SANITY_PROJECT_ID = 'eugrcsp3';
+const SANITY_DATASET = 'production';
+const SANITY_API_VERSION = '2024-01-01';
+
+function sanityImageUrl(ref) {
+  if (!ref) return null;
+  const parts = ref.replace('image-', '').split('-');
+  const format = parts.pop();
+  const id = parts.join('-');
+  return `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${id}.${format}`;
 }
 
-function closeModal() {
-  const modal = document.getElementById('services-modal');
-  modal.style.display = 'none';
-  document.body.style.overflow = '';
+let galleryImages = [];
+let lightboxIndex = 0;
+
+async function fetchGallery() {
+  const query = encodeURIComponent(`*[_type == "galleryImage"] | order(orderRank asc) {
+    _id,
+    title,
+    caption,
+    image,
+    location
+  }`);
+  const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}?query=${query}`;
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.result || [];
+  } catch(e) {
+    console.error('Gallery fetch error:', e);
+    return [];
+  }
 }
 
-async function submitForm() {
-  const name = document.getElementById('f-name').value.trim();
-  const email = document.getElementById('f-email').value.trim();
-  const property = document.getElementById('f-property').value.trim();
-  const role = document.getElementById('f-role').value;
-  const error = document.getElementById('modal-error');
+function renderGallery(items) {
+  const grid = document.getElementById('gallery-grid');
+  const count = document.getElementById('gallery-count');
 
-  if (!name || !email || !property || !role) {
-    error.style.display = 'block';
+  if (!items.length) {
+    grid.innerHTML = '<div class="gallery__placeholder"><p>Portfolio coming soon.</p></div>';
     return;
   }
-  error.style.display = 'none';
 
-  const btn = document.getElementById('submit-btn');
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
+  galleryImages = items.map(item => ({
+    src: sanityImageUrl(item.image?.asset?._ref),
+    caption: item.caption || item.title || '',
+    location: item.location || ''
+  })).filter(i => i.src);
 
-  try {
-    const res = await fetch('/api/request-guide', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, property, role })
-    });
+  count.textContent = `${galleryImages.length} images`;
 
-    if (res.ok) {
-      document.getElementById('modal-form').style.display = 'none';
-      document.getElementById('modal-success').style.display = 'block';
-      setTimeout(closeModal, 4000);
-    } else {
-      btn.textContent = 'Send Me the Guide';
-      btn.disabled = false;
-      error.textContent = 'Something went wrong. Please try again.';
-      error.style.display = 'block';
-    }
-  } catch(e) {
-    btn.textContent = 'Send Me the Guide';
-    btn.disabled = false;
-    error.textContent = 'Something went wrong. Please try again.';
-    error.style.display = 'block';
-  }
+  grid.innerHTML = galleryImages.map((img, i) => `
+    <div class="gallery__item" onclick="openLightbox(${i})">
+      <img src="${img.src}" alt="${img.caption}" loading="lazy">
+      <div class="gallery__item__overlay">
+        <span class="gallery__item__caption">${img.location || img.caption}</span>
+      </div>
+    </div>
+  `).join('');
 }
 
-// Close modal on backdrop click
-document.getElementById('services-modal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
+function openLightbox(index) {
+  lightboxIndex = index;
+  document.getElementById('lightbox-img').src = galleryImages[index].src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function lightboxNav(dir) {
+  lightboxIndex = (lightboxIndex + dir + galleryImages.length) % galleryImages.length;
+  document.getElementById('lightbox-img').src = galleryImages[lightboxIndex].src;
+}
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
 });
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') lightboxNav(-1);
+  if (e.key === 'ArrowRight') lightboxNav(1);
+});
+
+fetchGallery().then(renderGallery);
 </script>
 </body>
 </html>

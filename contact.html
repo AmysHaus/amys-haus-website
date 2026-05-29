@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact — Amy's Haus</title>
-<meta name="description" content="Get in touch with Amy's Haus. Send a message or book a discovery call.">
+<meta name="description" content="Get in touch with Amy's Haus. Send a message or request a discovery call.">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
 @font-face{font-family:'Saigon';src:url('https://res.cloudinary.com/dxhyox3vo/raw/upload/v1775402655/Saigon-Light_vptiqs.otf') format('opentype');font-weight:300;font-style:normal;font-display:swap;}
@@ -16,7 +16,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
   --choc:#563433;--choc-deep:#3d2524;--cream:#F5F0EA;--cream-mid:#E8DDD0;
-  --white:#FFFFFF;--ink:#1A1A1A;--ink-muted:#5a4a48;
+  --white:#FFFFFF;--ink:#1A1A1A;--ink-muted:#5a4a48;--gold:#C4956A;
   --serif:'Saigon',Georgia,serif;--sans:'Work Sans',system-ui,sans-serif;
   --gutter:clamp(1.5rem,5vw,5rem);--radius:2rem;--pill:100px;
   --ease:cubic-bezier(0.16,1,0.3,1);
@@ -49,21 +49,23 @@ a{color:inherit;text-decoration:none;}
 .page-hero__sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,1.3vw,1.1rem);line-height:1.8;color:rgba(255,255,255,0.55);margin-top:1.5rem;max-width:540px;}
 
 /* CONTACT FORM SECTION */
-.contact-form-section{background:var(--cream);padding:clamp(8rem,10vw,10rem) var(--gutter) clamp(4rem,7vw,8rem);}
+.contact-form-section{background:var(--cream);padding:clamp(6rem,10vw,10rem) var(--gutter) clamp(4rem,7vw,8rem);}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(4rem,8vw,10rem);align-items:start;max-width:1320px;margin:0 auto;}
 .contact-intro__label{font-family:var(--sans);font-weight:500;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--choc);opacity:.5;margin-bottom:1rem;}
 .contact-intro__heading{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,3.5vw,3rem);line-height:1.15;color:var(--choc);margin-bottom:1.5rem;}
 .contact-intro__body{font-family:var(--sans);font-weight:300;font-size:1rem;line-height:1.8;color:var(--ink-muted);}
 
-/* FORM */
+/* SHARED FORM STYLES */
 .form{display:flex;flex-direction:column;gap:1.25rem;}
 .form__field{display:flex;flex-direction:column;gap:0.5rem;}
 .form__label{font-family:var(--sans);font-weight:500;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--choc);opacity:0.6;}
-.form__input,.form__textarea{font-family:var(--sans);font-size:0.95rem;font-weight:300;color:var(--ink);background:var(--white);border:1.5px solid rgba(86,52,51,0.15);border-radius:0.75rem;padding:0.9rem 1.25rem;outline:none;transition:border-color .3s var(--ease);width:100%;}
-.form__input:focus,.form__textarea:focus{border-color:var(--choc);}
+.form__input,.form__textarea,.form__select{font-family:var(--sans);font-size:0.95rem;font-weight:300;color:var(--ink);background:var(--white);border:1.5px solid rgba(86,52,51,0.15);border-radius:0.75rem;padding:0.9rem 1.25rem;outline:none;transition:border-color .3s var(--ease);width:100%;}
+.form__input:focus,.form__textarea:focus,.form__select:focus{border-color:var(--choc);}
 .form__textarea{resize:vertical;min-height:140px;}
+.form__select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23563433' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1.25rem center;}
 .form__submit{background:var(--choc);color:var(--white);font-family:var(--sans);font-weight:500;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;padding:1rem 2.5rem;border-radius:var(--pill);border:none;cursor:pointer;transition:all .35s var(--ease);align-self:flex-start;margin-top:0.5rem;}
 .form__submit:hover{background:var(--choc-deep);transform:translateY(-2px);}
+.form__submit:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
 .form__success{display:none;background:var(--choc);color:var(--white);padding:1.5rem 2rem;border-radius:var(--radius);margin-top:1rem;}
 .form__success p{font-family:var(--serif);font-weight:300;font-style:italic;font-size:1.1rem;opacity:.9;}
 .form__error{display:none;font-family:var(--sans);font-size:0.8rem;color:#c0392b;margin-top:0.25rem;}
@@ -71,15 +73,24 @@ a{color:inherit;text-decoration:none;}
 /* DIVIDER */
 .divider{height:1px;background:rgba(86,52,51,0.1);max-width:1320px;margin:0 auto;}
 
-/* CALENDLY SECTION */
-.calendly-section{background:var(--cream);padding:clamp(4rem,7vw,8rem) var(--gutter);}
-.calendly-inner{max-width:1320px;margin:0 auto;}
-.calendly-header{margin-bottom:3rem;}
-.calendly-header__label{font-family:var(--sans);font-weight:500;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--choc);opacity:.5;margin-bottom:1rem;}
-.calendly-header__heading{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,3.5vw,3rem);line-height:1.15;color:var(--choc);margin-bottom:1rem;}.calendly-header__heading em{font-style:italic;opacity:0.7;}
-.calendly-header__sub{font-family:var(--sans);font-weight:300;font-size:1rem;line-height:1.8;color:var(--ink-muted);max-width:540px;}
-.calendly-placeholder{background:var(--white);border:1.5px solid rgba(86,52,51,0.1);border-radius:var(--radius);padding:4rem 2rem;text-align:center;}
-.calendly-placeholder p{font-family:var(--serif);font-weight:300;font-style:italic;font-size:1.2rem;color:var(--choc);opacity:0.4;}
+/* INTAKE / DISCOVERY CALL SECTION */
+.intake-section{background:var(--cream-mid);padding:clamp(6rem,10vw,10rem) var(--gutter);}
+.intake-inner{max-width:1320px;margin:0 auto;}
+.intake-header{display:grid;grid-template-columns:1fr 1fr;gap:clamp(4rem,8vw,10rem);align-items:start;margin-bottom:3.5rem;}
+.intake-header__label{font-family:var(--sans);font-weight:500;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--choc);opacity:.5;margin-bottom:1rem;}
+.intake-header__heading{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,3.5vw,3rem);line-height:1.15;color:var(--choc);margin-bottom:1rem;}
+.intake-header__heading em{font-style:italic;opacity:0.7;}
+.intake-header__sub{font-family:var(--sans);font-weight:300;font-size:1rem;line-height:1.8;color:var(--ink-muted);}
+.intake-header__note{background:var(--white);border-radius:var(--radius);padding:2rem;border-left:3px solid var(--choc);}
+.intake-header__note p{font-family:var(--serif);font-weight:300;font-style:italic;font-size:1.05rem;color:var(--choc);line-height:1.6;opacity:0.85;}
+
+/* INTAKE FORM GROUPS */
+.intake-form{background:var(--white);border-radius:var(--radius);padding:clamp(2.5rem,4vw,4rem);}
+.form-group{margin-bottom:2.5rem;}
+.form-group:last-child{margin-bottom:0;}
+.form-group__label{font-family:var(--sans);font-weight:500;font-size:0.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--choc);opacity:0.4;margin-bottom:1.25rem;}
+.form-group__fields{display:grid;gap:1.25rem;}
+.form-group__fields.cols-2{grid-template-columns:1fr 1fr;}
 
 /* FOOTER */
 .footer{background:var(--choc-deep);color:var(--white);padding:clamp(3rem,5vw,5rem) var(--gutter) clamp(1.5rem,2vw,2rem);}
@@ -92,12 +103,8 @@ a{color:inherit;text-decoration:none;}
 .footer-links a:hover{color:var(--white);}
 .footer-bottom{display:flex;justify-content:space-between;font-size:.72rem;color:rgba(255,255,255,0.25);}
 
-.btn{display:inline-flex;align-items:center;font-family:var(--sans);font-weight:500;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;padding:.9rem 2rem;border-radius:var(--pill);border:none;cursor:pointer;transition:all .35s var(--ease);}
-.btn-dark{background:var(--choc);color:var(--white);}
-.btn-dark:hover{background:var(--choc-deep);}
-
 @media(max-width:900px){
-  .contact-grid{grid-template-columns:1fr;}
+  .contact-grid,.intake-header,.form-group__fields.cols-2{grid-template-columns:1fr;}
   .footer-grid{grid-template-columns:1fr;}
   .nav__links,.nav__cta{display:none;}
   .nav__hamburger{display:flex;}
@@ -112,7 +119,7 @@ a{color:inherit;text-decoration:none;}
   <ul class="nav__links">
     <li><a href="/">Home</a></li>
     <li><a href="/#about">About</a></li>
-    <li><a href="/#philosophy">Start Here</a></li>
+    <li><a href="/#philosophy">Philosophy</a></li>
     <li><a href="/journal.html">The Journal</a></li>
     <li><a href="/contact.html">Contact</a></li>
   </ul>
@@ -122,7 +129,15 @@ a{color:inherit;text-decoration:none;}
   </button>
 </nav>
 
-
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero__monogram">
+    <img src="https://res.cloudinary.com/dxhyox3vo/image/upload/q_auto/f_auto/v1775346313/AmysHausLogo_argabt.svg" alt="">
+  </div>
+  <p class="page-hero__label">Get in Touch</p>
+  <h1 class="page-hero__heading">Let's start a <em>conversation.</em></h1>
+  <p class="page-hero__sub">Whether you have a question, something resonated, or you're ready to talk about your property — we'd love to hear from you.</p>
+</section>
 
 <!-- CONTACT FORM -->
 <section class="contact-form-section">
@@ -158,24 +173,137 @@ a{color:inherit;text-decoration:none;}
 
 <div class="divider"></div>
 
-<!-- CALENDLY -->
-<section class="calendly-section" id="book">
-  <div class="calendly-inner">
-    <div class="calendly-header">
-      <p class="calendly-header__label">Discovery Call</p>
-      <h2 class="calendly-header__heading">Ready to create an experience <em>worth remembering?</em></h2>
-      <p class="calendly-header__sub">A conversation about your property, your guests, and the brand experience you want to create.</p>
+<!-- DISCOVERY CALL INTAKE -->
+<section class="intake-section" id="book">
+  <div class="intake-inner">
+    <div class="intake-header">
+      <div>
+        <p class="intake-header__label">Discovery Call</p>
+        <h2 class="intake-header__heading">Ready to create an experience <em>worth remembering?</em></h2>
+        <p class="intake-header__sub">Tell us about your business. This helps Amy understand where you are, what you're working through, and whether we're the right fit before getting on a call.</p>
+      </div>
+      <div class="intake-header__note">
+        <p>"The most transformative work starts with understanding exactly where a property is — and where it wants to go. Fill in the details below and we'll be in touch to schedule your discovery call."</p>
+      </div>
     </div>
-    <!-- Replace with Calendly embed once Amy's account is set up -->
-    <div class="calendly-placeholder">
-      <p>Booking coming soon — reach out via the form above in the meantime.</p>
+
+    <div class="intake-form" id="intake-form-wrap">
+      <form id="intake-form">
+
+        <div class="form-group">
+          <p class="form-group__label">Your Contact Details</p>
+          <div class="form-group__fields cols-2">
+            <div class="form__field">
+              <label class="form__label" for="i-name">Your Name</label>
+              <input class="form__input" type="text" id="i-name" placeholder="Full name">
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="i-email">Email Address</label>
+              <input class="form__input" type="email" id="i-email" placeholder="your@email.com">
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="i-phone">Phone Number <span style="opacity:0.5;font-size:0.65rem;">(optional)</span></label>
+              <input class="form__input" type="tel" id="i-phone" placeholder="+1 (000) 000-0000">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p class="form-group__label">About Your Business</p>
+          <div class="form-group__fields cols-2">
+            <div class="form__field">
+              <label class="form__label" for="i-biz">Business Name</label>
+              <input class="form__input" type="text" id="i-biz" placeholder="Your property or business name">
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="i-location">Location</label>
+              <input class="form__input" type="text" id="i-location" placeholder="City, state / country">
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="i-type">Property Type</label>
+              <select class="form__select" id="i-type">
+                <option value="" disabled selected>Select one</option>
+                <option>Hotel</option>
+                <option>Resort</option>
+                <option>Restaurant</option>
+                <option>Short-Term Rental</option>
+                <option>Event Venue</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="i-years">Years Operating</label>
+              <select class="form__select" id="i-years">
+                <option value="" disabled selected>Select one</option>
+                <option>Under 1 year</option>
+                <option>1–3 years</option>
+                <option>3–5 years</option>
+                <option>5+ years</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p class="form-group__label">The Challenge</p>
+          <div class="form-group__fields">
+            <div class="form__field">
+              <label class="form__label" for="i-pain">What are your biggest current pain points with the guest experience?</label>
+              <textarea class="form__textarea" id="i-pain" placeholder="Be as specific as you like — this helps us understand where you are..." style="min-height:120px;"></textarea>
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="i-win">What does a win look like for you?</label>
+              <textarea class="form__textarea" id="i-win" placeholder="What would success feel like in 6 months?" style="min-height:100px;"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p class="form-group__label">Practical Details</p>
+          <div class="form-group__fields cols-2">
+            <div class="form__field">
+              <label class="form__label" for="i-budget">Approximate Budget</label>
+              <select class="form__select" id="i-budget">
+                <option value="" disabled selected>Select a range</option>
+                <option>Under $5,000</option>
+                <option>$5,000 – $15,000</option>
+                <option>$15,000 – $30,000</option>
+                <option>$30,000+</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="i-timeline">Ideal Timeline to Start</label>
+              <select class="form__select" id="i-timeline">
+                <option value="" disabled selected>Select one</option>
+                <option>As soon as possible</option>
+                <option>Within 1–3 months</option>
+                <option>3–6 months</option>
+                <option>Just exploring for now</option>
+              </select>
+            </div>
+            <div class="form__field" style="grid-column:1/-1;">
+              <label class="form__label" for="i-heard">How did you hear about Amy's Haus?</label>
+              <input class="form__input" type="text" id="i-heard" placeholder="Instagram, referral, Google...">
+            </div>
+          </div>
+        </div>
+
+        <p class="form__error" id="intake-error">Please fill in all required fields.</p>
+        <button type="button" class="form__submit" id="intake-btn" onclick="submitIntake()">Submit & Request a Discovery Call</button>
+      </form>
     </div>
+
+    <div class="form__success" id="intake-success" style="display:none;margin-top:0;">
+      <p>We've received your inquiry. Amy will be in touch shortly to schedule your discovery call.</p>
+    </div>
+
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="container" style="max-width:1320px;margin:0 auto;">
+  <div style="max-width:1320px;margin:0 auto;">
     <div class="footer-grid">
       <div>
         <p class="footer-brand">Amy's Haus</p>
@@ -185,8 +313,8 @@ a{color:inherit;text-decoration:none;}
         <p class="footer-heading">Pages</p>
         <ul class="footer-links">
           <li><a href="/">Home</a></li>
-    <li><a href="/#about">About</a></li>
-          <li><a href="/#philosophy">Start Here</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#philosophy">Philosophy</a></li>
           <li><a href="/journal.html">The Journal</a></li>
           <li><a href="/contact.html">Contact</a></li>
         </ul>
@@ -199,7 +327,7 @@ a{color:inherit;text-decoration:none;}
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 Amy's Haus. All rights reserved.</p>
+      <p>© 2026 Amy's Haus. All rights reserved.</p>
       <p>Nashville, TN</p>
     </div>
   </div>
@@ -212,6 +340,7 @@ window.onscroll = function() {
   else nav.classList.remove('scrolled');
 };
 
+// Simple contact form
 async function submitContact() {
   const name = document.getElementById('name').value.trim();
   const email = document.getElementById('email').value.trim();
@@ -219,10 +348,7 @@ async function submitContact() {
   const error = document.getElementById('form-error');
   const btn = document.getElementById('submit-btn');
 
-  if (!name || !email || !message) {
-    error.style.display = 'block';
-    return;
-  }
+  if (!name || !email || !message) { error.style.display = 'block'; return; }
   error.style.display = 'none';
   btn.textContent = 'Sending...';
   btn.disabled = true;
@@ -233,21 +359,64 @@ async function submitContact() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, message })
     });
-
     if (res.ok) {
       document.getElementById('contact-form').style.display = 'none';
       document.getElementById('form-success').style.display = 'block';
     } else {
-      btn.textContent = 'Send Message';
-      btn.disabled = false;
-      error.textContent = 'Something went wrong. Please try again.';
-      error.style.display = 'block';
+      btn.textContent = 'Send Message'; btn.disabled = false;
+      error.textContent = 'Something went wrong. Please try again.'; error.style.display = 'block';
     }
   } catch(e) {
-    btn.textContent = 'Send Message';
-    btn.disabled = false;
-    error.textContent = 'Something went wrong. Please try again.';
-    error.style.display = 'block';
+    btn.textContent = 'Send Message'; btn.disabled = false;
+    error.textContent = 'Something went wrong. Please try again.'; error.style.display = 'block';
+  }
+}
+
+// Intake questionnaire
+async function submitIntake() {
+  const contactName = document.getElementById('i-name').value.trim();
+  const contactEmail = document.getElementById('i-email').value.trim();
+  const contactPhone = document.getElementById('i-phone').value.trim();
+  const businessName = document.getElementById('i-biz').value.trim();
+  const location = document.getElementById('i-location').value.trim();
+  const propertyType = document.getElementById('i-type').value;
+  const yearsOperating = document.getElementById('i-years').value;
+  const painPoints = document.getElementById('i-pain').value.trim();
+  const winLooksLike = document.getElementById('i-win').value.trim();
+  const budget = document.getElementById('i-budget').value;
+  const timeline = document.getElementById('i-timeline').value;
+  const howHeard = document.getElementById('i-heard').value.trim();
+
+  const error = document.getElementById('intake-error');
+  const btn = document.getElementById('intake-btn');
+
+  if (!contactName || !contactEmail || !businessName || !painPoints) {
+    error.style.display = 'block'; return;
+  }
+  error.style.display = 'none';
+  btn.textContent = 'Submitting...'; btn.disabled = true;
+
+  try {
+    const res = await fetch('/api/intake', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contactName, contactEmail, contactPhone,
+        businessName, location, propertyType, yearsOperating,
+        painPoints, winLooksLike, budget, timeline, howHeard
+      })
+    });
+    if (res.ok) {
+      document.getElementById('intake-form-wrap').style.display = 'none';
+      document.getElementById('intake-success').style.display = 'block';
+      document.getElementById('intake-success').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      btn.textContent = 'Submit & Request a Discovery Call'; btn.disabled = false;
+      error.textContent = 'Something went wrong. Please try again.'; error.style.display = 'block';
+    }
+  } catch(e) {
+    btn.textContent = 'Submit & Request a Discovery Call'; btn.disabled = false;
+    error.textContent = 'Something went wrong. Please try again.'; error.style.display = 'block';
   }
 }
 </script>

@@ -29,7 +29,7 @@ a{color:inherit;text-decoration:none;}
 /* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.75rem var(--gutter);display:flex;align-items:center;justify-content:space-between;background:transparent;transition:background .5s var(--ease),padding .5s var(--ease);}
 .nav.scrolled{background:rgba(86,52,51,0.97);backdrop-filter:blur(12px);padding:1.1rem var(--gutter);}
-.nav__logo{font-family:var(--serif);font-weight:300;font-style:italic;font-size:1.25rem;color:var(--white);opacity:0;transition:opacity .5s var(--ease);pointer-events:none;}
+.nav__logo{font-family:var(--serif);font-weight:300;font-style:italic;font-size:1.25rem;color:var(--white);opacity:0;transition:opacity .5s var(--ease);pointer-events:none;}.nav__logo-mono{display:none;height:36px;width:auto;}
 .nav.scrolled .nav__logo{opacity:1;pointer-events:auto;}
 .nav__links{display:flex;align-items:center;gap:2.5rem;list-style:none;}
 .nav__links a{font-family:var(--sans);font-weight:400;font-size:0.75rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.75);transition:color .3s;}
@@ -129,16 +129,12 @@ a{color:inherit;text-decoration:none;}
 /* SERVICES */
 .services{background:var(--cream-mid);}
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin:clamp(2rem,3vw,3rem) 0;}
-.service-card{background:var(--white);padding:2.5rem 2rem;border-radius:var(--radius);display:flex;flex-direction:column;gap:.85rem;position:relative;overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s var(--ease);}
-.service-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--choc);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease);}
-.service-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(86,52,51,0.1);}
-.service-card:hover::after{transform:scaleX(1);}
+.service-card{background:var(--white);padding:2.5rem 2rem;border-radius:var(--radius);display:flex;flex-direction:column;gap:.85rem;position:relative;overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s var(--ease);border:1.5px solid rgba(86,52,51,0.15);}
+.service-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(86,52,51,0.12);border-color:var(--choc);}
 .card-num{font-family:var(--serif);font-weight:200;font-size:1rem;color:var(--choc);opacity:.25;}
 .card-title{font-family:var(--serif);font-weight:400;font-size:1.4rem;color:var(--choc);line-height:1.2;}
 .card-type{font-family:var(--sans);font-weight:500;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--choc);opacity:.4;}
 .card-desc{font-family:var(--sans);font-weight:300;font-size:.9rem;line-height:1.75;color:var(--ink-muted);flex:1;}
-.card-arrow{color:var(--choc);opacity:.25;align-self:flex-end;transition:opacity .3s,transform .3s var(--ease);}
-.service-card:hover .card-arrow{opacity:1;transform:translateX(4px);}
 .btn-center{display:flex;justify-content:center;}
 
 /* CLOSING */
@@ -191,12 +187,16 @@ a{color:inherit;text-decoration:none;}
   .nav__links,.nav__cta{display:none;}
   .nav__hamburger{display:flex;}
 
-  /* On mobile: logo always visible in nav */
+  /* On mobile: logo always visible in nav, show monogram instead of text */
   .nav__logo{opacity:1 !important;pointer-events:auto !important;}
-  /* Hide monogram on mobile, keep wordmark + rule */
+  .nav__logo-mono{display:inline-block;}
+  .nav__logo-text{display:none;}
+  /* Hide big monogram on mobile, keep wordmark + rule, shift up */
   .hero__monogram{display:none;}
   .hero__wordmark{font-size:clamp(2.5rem,10vw,4rem);}
   .hero__subtitle{font-size:0.62rem;}
+  .hero{align-items:center;padding-bottom:0;}
+  .hero__bottom{padding-bottom:clamp(2rem,6vw,4rem);}
 
   /* Pillar animations on mobile */
   .pillar:active{transform:translateY(-4px);box-shadow:0 16px 40px rgba(86,52,51,0.1);}
@@ -218,13 +218,14 @@ a{color:inherit;text-decoration:none;}
 
   /* Services cards full width */
   .service-card{padding:2rem 1.5rem;}
+  .service-card:active{transform:translateY(-4px);box-shadow:0 16px 48px rgba(86,52,51,0.12);border-color:var(--choc);}
 }
 </style>
 </head>
 <body>
 
 <nav class="nav" id="nav">
-  <a href="/" class="nav__logo">Amy's Haus</a>
+  <a href="/" class="nav__logo"><span class="nav__logo-text">Amy's Haus</span><img class="nav__logo-mono" src="https://res.cloudinary.com/dxhyox3vo/image/upload/q_auto/f_auto/v1775346313/AmysHausLogo_argabt.svg" alt="AH"></a>
   <ul class="nav__links">
     <li><a href="#about">About</a></li>
     <li><a href="#philosophy">Philosophy</a></li>
@@ -386,21 +387,18 @@ a{color:inherit;text-decoration:none;}
         <h3 class="card-title">The Haus Walk</h3>
         <p class="card-type">Guest Experience Audit</p>
         <p class="card-desc">Our signature on-site assessment — the place every engagement begins.</p>
-        <svg class="card-arrow" width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 7H17M11 1L17 7L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div class="service-card">
         <div class="card-num">02</div>
         <h3 class="card-title">The Full Haus Refresh</h3>
         <p class="card-type">Creative Direction & Implementation</p>
         <p class="card-desc">The main engagement. Real, lasting change across every touchpoint of your business.</p>
-        <svg class="card-arrow" width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 7H17M11 1L17 7L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div class="service-card">
         <div class="card-num">03</div>
         <h3 class="card-title">The Ongoing Haus Partnership</h3>
         <p class="card-type">Retainer</p>
         <p class="card-desc">For clients who want to stay sharp and keep the experience evolving.</p>
-        <svg class="card-arrow" width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 7H17M11 1L17 7L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
     </div>
     <div class="btn-center">

@@ -76,7 +76,7 @@ a{color:inherit;text-decoration:none;}
 /* INTAKE / DISCOVERY CALL SECTION */
 .intake-section{background:var(--cream-mid);padding:clamp(6rem,10vw,10rem) var(--gutter);}
 .intake-inner{max-width:1320px;margin:0 auto;}
-.intake-header{display:grid;grid-template-columns:1fr 1fr;gap:clamp(4rem,8vw,10rem);align-items:start;margin-bottom:3.5rem;}
+.intake-header{margin-bottom:3.5rem;max-width:700px;}
 .intake-header__label{font-family:var(--sans);font-weight:500;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--choc);opacity:.5;margin-bottom:1rem;}
 .intake-header__heading{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,3.5vw,3rem);line-height:1.15;color:var(--choc);margin-bottom:1rem;}
 .intake-header__heading em{font-style:italic;opacity:0.7;}
@@ -111,6 +111,7 @@ a{color:inherit;text-decoration:none;}
   .footer-bottom{flex-direction:column;gap:.5rem;text-align:center;}
 }
 </style>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -147,11 +148,9 @@ a{color:inherit;text-decoration:none;}
       <div>
         <p class="intake-header__label">Discovery Call</p>
         <h2 class="intake-header__heading">Ready to create an experience <em>worth remembering?</em></h2>
-        <p class="intake-header__sub">Tell us about your business. This helps Amy understand where you are, what you're working through, and whether we're the right fit before getting on a call.</p>
+        <p class="intake-header__sub">Tell us about your business. This helps us understand where you are, what you're working through, and whether we're the right fit before getting on a call.</p>
       </div>
-      <div class="intake-header__note">
-        <p>"The most transformative work starts with understanding exactly where a property is — and where it wants to go. Fill in the details below and we'll be in touch to schedule your discovery call."</p>
-      </div>
+
     </div>
 
     <div class="intake-form" id="intake-form-wrap">
@@ -257,12 +256,14 @@ a{color:inherit;text-decoration:none;}
         </div>
 
         <p class="form__error" id="intake-error">Please fill in all required fields.</p>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAABDYlBbXDfFGSC3_T" data-theme="light" style="margin-top:0.5rem;"></div>
         <button type="button" class="form__submit" id="intake-btn" onclick="submitIntake()">Submit & Request a Discovery Call</button>
       </form>
     </div>
 
-    <div class="form__success" id="intake-success" style="display:none;margin-top:0;">
-      <p>We've received your inquiry. Amy will be in touch shortly to schedule your discovery call.</p>
+    <div id="intake-success" style="display:none;background:var(--choc);border-radius:var(--radius);padding:clamp(3rem,5vw,5rem);text-align:center;margin-top:0;">
+      <p style="font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(1.75rem,3vw,2.5rem);color:var(--white);line-height:1.15;margin-bottom:1rem;">We've received your inquiry.</p>
+      <p style="font-family:var(--sans);font-weight:300;font-size:1rem;color:rgba(255,255,255,0.6);line-height:1.8;max-width:480px;margin:0 auto;">We'll be in touch shortly to schedule your discovery call.</p>
     </div>
 
   </div>
@@ -331,6 +332,15 @@ async function submitIntake() {
   error.style.display = 'none';
   btn.textContent = 'Submitting...'; btn.disabled = true;
 
+  // Get Turnstile token
+  const turnstileToken = document.querySelector('[name="cf-turnstile-response"]')?.value;
+  if (!turnstileToken) {
+    error.textContent = 'Please complete the verification.';
+    error.style.display = 'block';
+    btn.textContent = 'Submit & Request a Discovery Call'; btn.disabled = false;
+    return;
+  }
+
   try {
     const res = await fetch('/api/intake', {
       method: 'POST',
@@ -338,7 +348,8 @@ async function submitIntake() {
       body: JSON.stringify({
         contactName, contactEmail, contactPhone,
         businessName, location, propertyType, yearsOperating,
-        painPoints, winLooksLike, budget, timeline, howHeard
+        painPoints, winLooksLike, budget, timeline, howHeard,
+        turnstileToken
       })
     });
     if (res.ok) {

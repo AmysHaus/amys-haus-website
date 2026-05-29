@@ -20,6 +20,7 @@ export default async function handler(req, res) {
     contactName,
     contactEmail,
     contactPhone,
+    turnstileToken,
   } = req.body;
 
   if (!businessName || !contactName || !contactEmail || !painPoints) {
@@ -27,6 +28,18 @@ export default async function handler(req, res) {
   }
 
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
+  const TURNSTILE_SECRET = process.env.TURNSTILE_SECRET_KEY;
+
+  // Verify Turnstile token
+  const verification = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ secret: TURNSTILE_SECRET, response: turnstileToken }),
+  });
+  const verificationData = await verification.json();
+  if (!verificationData.success) {
+    return res.status(400).json({ error: 'Verification failed. Please try again.' });
+  }
 
   const fieldRow = (label, value) => value ? `
     <tr>

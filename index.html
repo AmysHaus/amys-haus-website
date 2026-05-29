@@ -52,9 +52,9 @@ a{color:inherit;text-decoration:none;}
 .hero__rule{width:100%;height:1px;background:rgba(255,255,255,0.3);}
 
 /* TAGLINE BAND */
-.tagline-band{background:url("https://res.cloudinary.com/dxhyox3vo/image/upload/q_auto/f_auto/v1775410860/amyhaustextlandingbg_j7g7gk.png") top center/100% auto no-repeat;background-color:unset;padding:0;text-align:center;overflow:hidden;aspect-ratio:4.8/1;display:flex;align-items:center;justify-content:center;}
+.tagline-band{background:url("https://res.cloudinary.com/dxhyox3vo/image/upload/q_auto/f_auto/v1775410860/amyhaustextlandingbg_j7g7gk.png") top center/cover no-repeat;background-color:var(--cream);padding:clamp(4rem,10vw,7rem) var(--gutter);text-align:center;display:flex;align-items:center;justify-content:center;min-height:clamp(200px,25vw,340px);}
 .tagline-band .accent{color:var(--choc);}
-.tagline-band p{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(2.2rem,4.5vw,4.5rem);line-height:1.05;color:var(--choc);opacity:0;}
+.tagline-band p{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(2.2rem,4.5vw,4.5rem);line-height:1.05;color:var(--choc);opacity:0;min-height:1.2em;}
 .tagline-band p.animate{opacity:1;}
 
 /* SHARED */
@@ -191,13 +191,15 @@ a{color:inherit;text-decoration:none;}
   .nav__links,.nav__cta{display:none;}
   .nav__hamburger{display:flex;}
 
-  /* Hero wordmark stays, but cleaner on mobile */
-  .hero__monogram{width:clamp(120px,30vw,200px);}
-  .hero__wordmark{font-size:clamp(2rem,9vw,3.5rem);}
+  /* On mobile: logo always visible in nav, hero wordmark hidden */
+  .nav__logo{opacity:1 !important;pointer-events:auto !important;}
+  .hero__bottom{display:none;}
 
-  /* Pillar animations on mobile via touch */
+  /* Pillar animations on mobile */
   .pillar:active{transform:translateY(-4px);box-shadow:0 16px 40px rgba(86,52,51,0.1);}
   .pillar:active .pillar__icon{transform:rotate(180deg);}
+  .pillar.touched{transform:translateY(-4px);box-shadow:0 16px 40px rgba(86,52,51,0.1);}
+  .pillar.touched .pillar__icon{transform:rotate(180deg);}
 
   /* Gallery mobile - full width single column scroll */
   .gallery__inner{padding:0;}
@@ -457,60 +459,54 @@ window.onscroll = function() {
 // Tagline typing effect
 const taglineEl = document.querySelector('.tagline-band p');
 if (taglineEl) {
-  const fullHTML = taglineEl.innerHTML;
-  // Extract plain text and accent span
-  const plainText = 'Guest experiences ';
-  const accentText = 'worth remembering.';
-  
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
       obs.unobserve(e.target);
       e.target.classList.add('animate');
       e.target.innerHTML = '';
-      
-      let i = 0;
+
+      const plainText = 'Guest experiences ';
+      const accentText = 'worth remembering.';
       const fullText = plainText + accentText;
+      let i = 0;
+
+      // Build structure
+      const textNode = document.createTextNode('');
+      const accentSpan = document.createElement('span');
+      accentSpan.className = 'accent';
       const cursor = document.createElement('span');
       cursor.className = 'tagline-cursor';
+      e.target.appendChild(textNode);
+      e.target.appendChild(accentSpan);
       e.target.appendChild(cursor);
 
       function type() {
         if (i < fullText.length) {
-          const char = fullText[i];
-          const isAccent = i >= plainText.length;
-          cursor.remove();
-          if (isAccent) {
-            let accent = e.target.querySelector('.accent');
-            if (!accent) {
-              accent = document.createElement('span');
-              accent.className = 'accent';
-              e.target.appendChild(accent);
-            }
-            accent.textContent += char;
+          if (i < plainText.length) {
+            textNode.textContent += fullText[i];
           } else {
-            e.target.insertBefore(document.createTextNode(e.target.childNodes.length === 0 ? char : char), cursor);
-            // rebuild text node properly
-            const textNodes = [...e.target.childNodes].filter(n => n.nodeType === 3);
-            if (textNodes.length === 0) {
-              e.target.insertBefore(document.createTextNode(char), e.target.firstChild);
-            } else {
-              textNodes[textNodes.length - 1].textContent += char;
-            }
+            accentSpan.textContent += fullText[i];
           }
-          e.target.appendChild(cursor);
           i++;
-          setTimeout(type, 38);
+          setTimeout(type, 42);
         } else {
-          setTimeout(() => cursor.remove(), 800);
+          setTimeout(() => cursor.style.display = 'none', 900);
         }
       }
-      // Small delay before starting
-      setTimeout(type, 300);
+      setTimeout(type, 400);
     });
-  }, { threshold: 0.6 });
+  }, { threshold: 0.5 });
   obs.observe(taglineEl);
 }
+
+// Pillar touch animations on mobile
+document.querySelectorAll('.pillar').forEach(pillar => {
+  pillar.addEventListener('touchstart', () => {
+    pillar.classList.add('touched');
+    setTimeout(() => pillar.classList.remove('touched'), 600);
+  }, { passive: true });
+});
 
 // Mobile menu
 function openMobileMenu() {

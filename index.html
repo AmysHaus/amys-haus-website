@@ -191,9 +191,12 @@ a{color:inherit;text-decoration:none;}
   .nav__links,.nav__cta{display:none;}
   .nav__hamburger{display:flex;}
 
-  /* On mobile: logo always visible in nav, hero wordmark hidden */
+  /* On mobile: logo always visible in nav */
   .nav__logo{opacity:1 !important;pointer-events:auto !important;}
-  .hero__bottom{display:none;}
+  /* Hide monogram on mobile, keep wordmark + rule */
+  .hero__monogram{display:none;}
+  .hero__wordmark{font-size:clamp(2.5rem,10vw,4rem);}
+  .hero__subtitle{font-size:0.62rem;}
 
   /* Pillar animations on mobile */
   .pillar:active{transform:translateY(-4px);box-shadow:0 16px 40px rgba(86,52,51,0.1);}

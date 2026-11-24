@@ -199,6 +199,7 @@ async function fetchPosts() {
     return data.result || [];
   } catch(e) { return []; }
 }
+const escHtml = (v) => String(v ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
 function renderPosts(posts) {
   const grid = document.getElementById('posts-grid');
   const empty = document.getElementById('posts-empty');
@@ -210,16 +211,16 @@ function renderPosts(posts) {
     const imgSrc = post.coverImage?.asset?._ref ? imageUrl(post.coverImage.asset._ref) : null;
     const category = categoryLabels[post.category] || post.category || '';
     const date = formatDate(post.publishedAt);
-    const slug = post.slug?.current || '';
+    const slug = encodeURIComponent(post.slug?.current || '');
     return `<a href="/journal/${slug}" class="post-card">
-      <div class="post-card__image">${imgSrc ? `<img src="${imgSrc}" alt="${post.title}" loading="lazy">` : `<div class="post-card__image-placeholder"></div>`}</div>
+      <div class="post-card__image">${imgSrc ? `<img src="${imgSrc}" alt="${escHtml(post.title)}" loading="lazy">` : `<div class="post-card__image-placeholder"></div>`}</div>
       <div class="post-card__body">
         <div class="post-card__meta">
           <span class="post-card__category">${category}</span>
           <span class="post-card__date">${date}</span>
         </div>
-        <h2 class="post-card__title">${post.title}</h2>
-        ${post.excerpt ? `<p class="post-card__excerpt">${post.excerpt}</p>` : ''}
+        <h2 class="post-card__title">${escHtml(post.title)}</h2>
+        ${post.excerpt ? `<p class="post-card__excerpt">${escHtml(post.excerpt)}</p>` : ''}
         <div class="post-card__arrow">Read <svg width="16" height="12" viewBox="0 0 18 14" fill="none"><path d="M1 7H17M11 1L17 7L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
     </a>`;

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amy's Haus — Guest experiences worth remembering.</title>
-<meta name="description" content="Boutique hospitality experience consulting for independent hotels, resorts and restaurants across the US.">
+<title>Amy's Haus | Boutique Design &amp; Hospitality Consulting</title>
+<meta name="description" content="Boutique design and hospitality consulting for independent hotels, resorts and restaurants. Guest experiences worth remembering.">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
 @font-face{font-family:'Saigon';src:url('https://res.cloudinary.com/dxhyox3vo/raw/upload/v1775402655/Saigon-Light_vptiqs.otf') format('opentype');font-weight:300;font-style:normal;font-display:swap;}
@@ -69,9 +69,9 @@ a{color:inherit;text-decoration:none;}
 
 /* AMY */
 .amy{background:var(--choc);}
-.amy .section-label{color:rgba(255,255,255,0.45);}
+.amy .section-label{color:rgba(255,255,255,0.85);opacity:1;}
 .amy .section-heading{color:var(--white);}
-.amy .section-body{color:rgba(255,255,255,0.65);}
+.amy .section-body{color:rgba(255,255,255,0.92);font-weight:400;}
 .amy .section-body em{color:var(--white);opacity:1;font-family:var(--sans);}
 .amy .btn-dark{background:var(--white);color:var(--choc);}
 .amy-img{border-radius:var(--radius) var(--radius) 0 0;overflow:hidden;aspect-ratio:3/4;}
@@ -229,7 +229,6 @@ a{color:inherit;text-decoration:none;}
   <ul class="nav__links">
     <li><a href="#about">About</a></li>
     <li><a href="#philosophy">Philosophy</a></li>
-    <li><a href="/journal.html">The Journal</a></li>
     <li><a href="/contact.html">Contact</a></li>
   </ul>
   <a href="/contact.html#book" class="nav__cta">Book a Discovery Call</a>
@@ -244,7 +243,6 @@ a{color:inherit;text-decoration:none;}
   <nav class="mobile-menu__nav">
     <a href="#about" onclick="closeMobileMenu()">About</a>
     <a href="#philosophy" onclick="closeMobileMenu()">Philosophy</a>
-    <a href="/journal.html">The Journal</a>
     <a href="/contact.html">Contact</a>
   </nav>
   <a href="/contact.html#book" class="mobile-menu__cta" onclick="closeMobileMenu()">Book a Discovery Call</a>
@@ -429,7 +427,6 @@ a{color:inherit;text-decoration:none;}
         <ul class="footer-links">
           <li><a href="#about">About</a></li>
           <li><a href="#philosophy">Philosophy</a></li>
-          <li><a href="/journal.html">The Journal</a></li>
           <li><a href="/contact.html">Contact</a></li>
         </ul>
       </div>
@@ -561,13 +558,13 @@ async function fetchGallery() {
 let galleryOffset = 0;
 const ITEMS_PER_PAGE = 3;
 
+const escHtml = (v) => String(v ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+
 function renderGallery(items) {
   const track = document.getElementById('gallery-track');
 
-  if (!items.length) {
-    track.innerHTML = '<div class="gallery__placeholder"><p>Portfolio coming soon.</p></div>';
-    return;
-  }
+  const hideGallery = () => { const s = document.getElementById('gallery'); if (s) s.style.display = 'none'; };
+  if (!items.length) { hideGallery(); return; }
 
   galleryImages = items.map(item => ({
     src: sanityImageUrl(item.image?.asset?._ref),
@@ -575,12 +572,13 @@ function renderGallery(items) {
     location: item.location || '',
     wide: item.featured || false
   })).filter(i => i.src);
+  if (!galleryImages.length) { hideGallery(); return; }
 
   track.innerHTML = galleryImages.map((img, i) => `
     <div class="gallery__item${img.wide ? ' wide' : ''}" onclick="openLightbox(${i})">
-      <img src="${img.src}" alt="${img.caption}" loading="lazy">
+      <img src="${img.src}" alt="${escHtml(img.caption)}" loading="lazy">
       <div class="gallery__item__overlay">
-        <span class="gallery__item__caption">${img.location || img.caption}</span>
+        <span class="gallery__item__caption">${escHtml(img.location || img.caption)}</span>
       </div>
     </div>
   `).join('');

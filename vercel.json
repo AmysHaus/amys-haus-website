@@ -1,8 +1,70 @@
 {
   "rewrites": [
-    { "source": "/journal/:slug", "destination": "/journal-post.html" }
+    {
+      "source": "/journal/:slug",
+      "destination": "/journal-post.html"
+    }
   ],
   "redirects": [
-    { "source": "/", "destination": "/gate.html", "permanent": false }
+    {
+      "source": "/journal",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/journal.html",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/journal/:slug",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/journal-post.html",
+      "destination": "/",
+      "permanent": false
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://res.cloudinary.com https://cdn.sanity.io; media-src 'self' https://res.cloudinary.com; connect-src 'self' https://eugrcsp3.api.sanity.io https://eugrcsp3.apicdn.sanity.io; frame-src https://challenges.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=()"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    }
   ]
 }

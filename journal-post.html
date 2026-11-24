@@ -21,7 +21,7 @@
   --gutter:clamp(1.5rem,5vw,5rem);--radius:2rem;--pill:100px;
   --ease:cubic-bezier(0.16,1,0.3,1);
 }
-html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased;background:var(--choc-deep);overscroll-behavior-y:none;}
 body{font-family:var(--sans);background:var(--cream);color:var(--ink);overflow-x:hidden;margin:0;}
 img{display:block;max-width:100%;}
 a{color:inherit;text-decoration:none;}
@@ -97,6 +97,16 @@ a{color:inherit;text-decoration:none;}
 .footer-links a:hover{color:var(--white);}
 .footer-bottom{display:flex;justify-content:space-between;font-size:.72rem;color:rgba(255,255,255,0.25);}
 
+/* MOBILE MENU */
+.mobile-menu{position:fixed;inset:0;z-index:200;background:var(--choc);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2rem;padding:2rem;transform:translateX(100%);transition:transform .5s var(--ease);}
+.mobile-menu.open{transform:translateX(0);}
+.mobile-menu__close{position:absolute;top:1.75rem;right:var(--gutter);background:none;border:none;color:rgba(255,255,255,0.6);font-size:2rem;cursor:pointer;line-height:1;}
+.mobile-menu__nav{display:flex;flex-direction:column;align-items:center;gap:2rem;}
+.mobile-menu__nav a{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(2rem,8vw,3rem);color:var(--white);text-decoration:none;opacity:0.85;transition:opacity .3s;}
+.mobile-menu__nav a:hover{opacity:1;}
+.mobile-menu__cta{font-family:var(--sans);font-weight:500;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.9rem 2.5rem;border-radius:var(--pill);border:1.5px solid rgba(255,255,255,0.4);color:var(--white);text-decoration:none;transition:all .35s var(--ease);}
+.mobile-menu__cta:hover{background:var(--white);color:var(--choc);}
+
 @media(max-width:768px){
   .post-gallery__grid{grid-template-columns:1fr 1fr;}
   .nav__links,.nav__cta{display:none;}
@@ -105,6 +115,7 @@ a{color:inherit;text-decoration:none;}
   .footer-bottom{flex-direction:column;gap:.5rem;text-align:center;}
 }
 </style>
+<link rel="icon" type="image/svg+xml" href="https://res.cloudinary.com/dxhyox3vo/image/upload/v1775346313/AmysHausLogo_argabt.svg">
 </head>
 <body>
 
@@ -122,6 +133,19 @@ a{color:inherit;text-decoration:none;}
     <span></span><span></span><span></span>
   </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu__close" id="mobile-close" aria-label="Close">×</button>
+  <nav class="mobile-menu__nav">
+    <a href="/" id="mm-home">Home</a>
+    <a href="/#about">About</a>
+    <a href="/#philosophy">Philosophy</a>
+    <a href="/journal.html">The Journal</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+  <a href="/contact.html#book" class="mobile-menu__cta">Book a Discovery Call</a>
+</div>
 
 <div id="post-loading" class="post-loading">
   <p>Loading...</p>
@@ -198,6 +222,14 @@ a{color:inherit;text-decoration:none;}
 </footer>
 
 <script>
+// Mobile menu
+(function(){
+  const menu = document.getElementById('mobile-menu');
+  const open = () => { menu.classList.add('open'); document.body.style.overflow = 'hidden'; };
+  const close = () => { menu.classList.remove('open'); document.body.style.overflow = ''; };
+  document.getElementById('hamburger').addEventListener('click', open);
+  document.getElementById('mobile-close').addEventListener('click', close);
+})();
 window.onscroll = function() {
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 80);
 };
@@ -213,11 +245,13 @@ const categoryLabels = {
   process: 'Behind the Process'
 };
 
+const escHtml = (v) => String(v ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+
 function getSlug() {
   const path = window.location.pathname;
   const parts = path.split('/');
   const last = parts[parts.length - 1];
-  return last.replace('.html', '');
+  return last.replace('.html', '').slice(0, 200);
 }
 
 function formatDate(dateStr) {
@@ -240,8 +274,8 @@ function renderBlocks(blocks) {
     if (block._type === 'image') {
       const src = imageUrl(block.asset._ref);
       return `<figure>
-        <img src="${src}" alt="${block.alt || ''}">
-        ${block.caption ? `<figcaption>${block.caption}</figcaption>` : ''}
+        <img src="${src}" alt="${escHtml(block.alt)}">
+        ${block.caption ? `<figcaption>${escHtml(block.caption)}</figcaption>` : ''}
       </figure>`;
     }
     if (block._type !== 'block') return '';
@@ -265,7 +299,7 @@ function renderBlocks(blocks) {
 }
 
 async function fetchPost(slug) {
-  const query = encodeURIComponent(`*[_type == "journalPost" && slug.current == "${slug}"][0] {
+  const query = encodeURIComponent(`*[_type == "journalPost" && slug.current == $slug][0] {
     _id,
     title,
     slug,
@@ -279,7 +313,7 @@ async function fetchPost(slug) {
     seoDescription
   }`);
 
-  const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}?query=${query}`;
+  const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}?query=${query}&$slug=${encodeURIComponent(JSON.stringify(slug))}`;
 
   const res = await fetch(url);
   const data = await res.json();
@@ -325,7 +359,7 @@ async function init() {
       galleryGrid.innerHTML = post.gallery.map(img => {
         const src = imageUrl(img.asset._ref);
         return `<div class="post-gallery__item">
-          <img src="${src}" alt="${img.alt || ''}" loading="lazy">
+          <img src="${src}" alt="${escHtml(img.alt)}" loading="lazy">
         </div>`;
       }).join('');
       document.getElementById('post-gallery').style.display = 'block';

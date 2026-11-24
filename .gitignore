@@ -1,0 +1,8 @@
+.DS_Store
+*.DS_Store
+node_modules/
+.env
+.env.*
+.vercel
+studio/dist/
+studio/.sanity/

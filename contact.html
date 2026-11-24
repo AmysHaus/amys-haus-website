@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact — Amy's Haus</title>
-<meta name="description" content="Get in touch with Amy's Haus. Send a message or request a discovery call.">
+<title>Book a Discovery Call | Amy's Haus</title>
+<meta name="description" content="Request a discovery call with Amy's Haus, a boutique design and hospitality consulting studio for independent hotels, resorts and restaurants.">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
 @font-face{font-family:'Saigon';src:url('https://res.cloudinary.com/dxhyox3vo/raw/upload/v1775402655/Saigon-Light_vptiqs.otf') format('opentype');font-weight:300;font-style:normal;font-display:swap;}
@@ -125,7 +125,6 @@ a{color:inherit;text-decoration:none;}
     <li><a href="/">Home</a></li>
     <li><a href="/#about">About</a></li>
     <li><a href="/#philosophy">Philosophy</a></li>
-    <li><a href="/journal.html">The Journal</a></li>
     <li><a href="/contact.html">Contact</a></li>
   </ul>
   <a href="/contact.html#book" class="nav__cta">Book a Discovery Call</a>
@@ -141,7 +140,6 @@ a{color:inherit;text-decoration:none;}
     <a href="/">Home</a>
     <a href="/#about">About</a>
     <a href="/#philosophy">Philosophy</a>
-    <a href="/journal.html">The Journal</a>
     <a href="/contact.html">Contact</a>
   </nav>
   <a href="/contact.html#book" class="mobile-menu__cta">Book a Discovery Call</a>
@@ -164,6 +162,7 @@ a{color:inherit;text-decoration:none;}
 
     <div class="intake-form" id="intake-form-wrap">
       <form id="intake-form">
+        <div aria-hidden="true" style="position:absolute;left:-9999px;height:0;overflow:hidden;"><label>Website <input type="text" name="website" id="hp-website" tabindex="-1" autocomplete="off"></label></div>
 
         <div class="form-group">
           <p class="form-group__label">Your Contact Details</p>
@@ -294,7 +293,6 @@ a{color:inherit;text-decoration:none;}
           <li><a href="/">Home</a></li>
           <li><a href="/#about">About</a></li>
           <li><a href="/#philosophy">Philosophy</a></li>
-          <li><a href="/journal.html">The Journal</a></li>
           <li><a href="/contact.html">Contact</a></li>
         </ul>
       </div>
@@ -360,7 +358,8 @@ async function submitIntake() {
         contactName, contactEmail, contactPhone,
         businessName, location, propertyType, yearsOperating,
         painPoints, winLooksLike, budget, timeline, howHeard,
-        turnstileToken
+        turnstileToken,
+        website: document.getElementById('hp-website')?.value || ''
       })
     });
     if (res.ok) {

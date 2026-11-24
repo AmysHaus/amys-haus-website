@@ -336,7 +336,7 @@ a{color:inherit;text-decoration:none;}
 </section>
 
 <!-- PORTFOLIO GALLERY -->
-<section class="gallery" id="gallery">
+<section class="gallery" id="gallery" style="display:none">
   <div class="gallery__inner">
     <div class="gallery__header">
       <div>
@@ -658,7 +658,13 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight') lightboxNav(1);
 });
 
-fetchGallery().then(renderGallery);
+// Portfolio gallery is hidden until real photos are ready.
+// To bring it back: set SHOW_GALLERY to true.
+const SHOW_GALLERY = false;
+if (SHOW_GALLERY) {
+  document.getElementById('gallery').style.display = '';
+  fetchGallery().then(renderGallery);
+}
 </script>
 </body>
 </html>
